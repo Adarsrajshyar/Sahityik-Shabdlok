@@ -1,0 +1,12 @@
+ZIP को इस्तेमाल करने के चरण
+
+1. ZIP डाउनलोड करें।
+2. ZIP पर right-click → Extract All → Extract।
+3. GitHub में अपना Sahityik-Shabdlok repository खोलें।
+4. Add file → Upload files चुनें।
+5. Extract किए हुए folder के अंदर की सामग्री upload area में drag-drop करें।
+6. Commit changes दबाएँ।
+7. Vercel में GitHub repo import करें; build command npm run build और output directory dist रखें।
+8. Deploy के बाद website link खोलकर mobile/desktop पर test करें।
+9. Supabase/EmailJS setup और security policies के बिना वास्तविक login, email, admin approval और public submissions live नहीं होंगे।
+10. Founder photo public/assets/founder-photo/founder.jpg नाम से रखें।

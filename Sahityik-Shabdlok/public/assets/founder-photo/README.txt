@@ -1,0 +1,1 @@
+यह folder Founder photo के लिए खाली छोड़ा गया है। अपनी चुनी हुई photo को founder.jpg नाम देकर यहाँ रखें। यह फोटो public website पर दिखाई देगी।
