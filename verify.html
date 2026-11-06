@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>प्रमाणपत्र सत्यापन | साहित्यिक शब्द लोक</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>साहित्यिक शब्द लोक</h1>
+    <p>ARS – Adarsh Raj Shayar</p>
+    <nav>
+      <a href="index.html">मुखपृष्ठ</a>
+      <a href="certificate.html">प्रमाणपत्र</a>
+      <a href="community.html">लेखक समुदाय</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <h2>प्रमाणपत्र सत्यापन</h2>
+  <p>ARS द्वारा जारी प्रमाणपत्र की जाँच के लिए उसका विशिष्ट प्रमाणपत्र ID दर्ज करें।</p>
+
+  <form id="verifyForm" class="content-form">
+    <label for="certificateId">प्रमाणपत्र ID</label>
+    <input
+      type="text"
+      id="certificateId"
+      name="certificateId"
+      placeholder="उदाहरण: ARS-2026-0001"
+      required
+    >
+    <button type="submit">सत्यापन करें</button>
+  </form>
+
+  <div id="verificationResult" class="notice" role="status" aria-live="polite">
+    <strong>सत्यापन प्रणाली:</strong> Backend और प्रमाणपत्र डेटाबेस जुड़ने के बाद
+    प्रमाणपत्र की वास्तविक स्थिति यहाँ दिखाई जाएगी।
+  </div>
+
+  <h3>सत्यापन में क्या जाँचा जाएगा?</h3>
+  <ul>
+    <li>प्रमाणपत्र की विशिष्ट ID</li>
+    <li>प्रमाणपत्र धारक का नाम</li>
+    <li>जारी करने की तारीख</li>
+    <li>प्रमाणपत्र का प्रकार</li>
+    <li>प्रमाणपत्र की वर्तमान स्थिति</li>
+  </ul>
+
+  <p><strong>ध्यान दें:</strong> अभी कोई प्रमाणपत्र ID वास्तविक रूप से सत्यापित नहीं की जा सकती।</p>
+</main>
+
+<footer class="site-footer">
+  <p>© ARS – साहित्यिक शब्द लोक</p>
+</footer>
+
+<script>
+document.getElementById("verifyForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const id = document.getElementById("certificateId").value.trim();
+  const result = document.getElementById("verificationResult");
+
+  if (!id) {
+    result.textContent = "कृपया प्रमाणपत्र ID दर्ज करें।";
+    return;
+  }
+
+  result.textContent =
+    "प्रमाणपत्र ID " + id +
+    " दर्ज की गई है। वास्तविक सत्यापन के लिए Backend और प्रमाणपत्र डेटाबेस कनेक्ट होना आवश्यक है।";
+});
+</script>
+</body>
+</html>
