@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>रचना भेजें | साहित्यिक शब्द लोक</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>साहित्यिक शब्द लोक</h1>
+    <p>ARS – Adarsh Raj Shayar</p>
+    <nav>
+      <a href="index.html">मुखपृष्ठ</a>
+      <a href="community.html">लेखक समुदाय</a>
+      <a href="author-dashboard.html">लेखक डैशबोर्ड</a>
+      <a href="login.html">लॉगिन</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <h2>अपनी रचना भेजें</h2>
+  <p>अपनी मौलिक रचना साहित्यिक शब्द लोक के साथ साझा करें। प्रकाशन से पहले रचना की समीक्षा की जाएगी।</p>
+
+  <form id="submissionForm" class="content-form">
+    <label for="authorName">लेखक का नाम</label>
+    <input id="authorName" name="authorName" type="text" required>
+
+    <label for="title">रचना का शीर्षक</label>
+    <input id="title" name="title" type="text" required>
+
+    <label for="type">रचना का प्रकार</label>
+    <select id="type" name="type" required>
+      <option value="">चुनें</option>
+      <option value="shayari">शायरी</option>
+      <option value="poem">कविता</option>
+      <option value="story">कहानी</option>
+    </select>
+
+    <label for="category">श्रेणी</label>
+    <select id="category" name="category" required>
+      <option value="">श्रेणी चुनें</option>
+      <option>प्रेम</option>
+      <option>दर्द</option>
+      <option>भावनात्मक</option>
+      <option>प्रेरणादायक</option>
+      <option>दोस्ती</option>
+      <option>जीवन</option>
+      <option>सामाजिक</option>
+      <option>रहस्य</option>
+      <option>अन्य</option>
+    </select>
+
+    <label for="content">अपनी पूरी रचना लिखें</label>
+    <textarea id="content" name="content" rows="12" minlength="10" required></textarea>
+
+    <label class="checkbox-row">
+      <input type="checkbox" id="originality" required>
+      मैं पुष्टि करता/करती हूँ कि यह मेरी मौलिक रचना है और इसे प्रकाशित करने का अधिकार मेरे पास है।
+    </label>
+
+    <button type="submit">रचना जमा करें</button>
+  </form>
+
+  <p id="submissionMessage" role="status"></p>
+
+  <div class="notice">
+    <strong>महत्वपूर्ण:</strong> अभी वेबसाइट का डेटाबेस कनेक्ट नहीं है।
+    यह फॉर्म फिलहाल रचना को सेव या प्रकाशित नहीं करता। Backend जुड़ने के बाद
+    रचना जमा करने और उसकी स्थिति देखने की सुविधा सक्रिय होगी।
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>© ARS – साहित्यिक शब्द लोक | शब्दों से संवेदना तक…</p>
+</footer>
+
+<script>
+document.getElementById("submissionForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  document.getElementById("submissionMessage").textContent =
+    "फॉर्म का प्रारूप तैयार है, लेकिन डेटाबेस कनेक्ट नहीं होने के कारण आपकी रचना अभी जमा नहीं हुई है।";
+});
+</script>
+</body>
+</html>
