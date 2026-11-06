@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="साहित्यिक शब्द लोक — ARS, आदर्श राज शायर का साहित्यिक मंच।">
+  <title>साहित्यिक शब्द लोक | ARS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="साहित्यिक शब्द लोक मुखपृष्ठ">
+    <span class="brand-mark">ARS</span><span><strong>साहित्यिक शब्द लोक</strong><small>शब्दों से संवेदना तक…</small></span>
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="मेन्यू खोलें">☰</button>
+  <nav id="mainNav">
+    <a href="#home">मुखपृष्ठ</a><a href="#shayari">शायरी</a><a href="#poetry">कविता</a>
+    <a href="#stories">कहानियाँ</a><a href="#book">ARS पुस्तकालय</a><a href="#community">लेखक समुदाय</a>
+    <button class="nav-login" id="openAuth">लॉगिन / जुड़ें</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p class="eyebrow">एक साहित्यिक परिवार • ARS</p>
+    <h1>जहाँ शब्दों को<br><em>मिलती है पहचान।</em></h1>
+    <p class="hero-copy">भावनाओं, अनुभवों और कल्पनाओं को शब्दों में पिरोने वाला एक खुला साहित्यिक मंच। पढ़िए, लिखिए और अपनी रचनाओं को दुनिया तक पहुँचाइए।</p>
+    <div class="hero-actions"><a class="btn btn-gold" href="#shayari">रचनाएँ पढ़ें</a><a class="btn btn-outline" href="#community">लेखक बनें</a></div>
+    <div class="hero-note"><span class="leaf">✦</span> साहित्य की नई उड़ान, आपके अपने शब्दों के साथ</div>
+  </div>
+  <div class="hero-art" aria-label="साहित्यिक पुस्तक सज्जा">
+    <div class="sun"></div><div class="book-illustration"><span>ARS</span><b>शब्दों की<br>दुनिया</b><small>साहित्यिक शब्द लोक</small></div>
+    <span class="art-leaf leaf-one">❧</span><span class="art-leaf leaf-two">❧</span>
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div><strong>05</strong><span>शायरी श्रेणियाँ</span></div><div><strong>ARS</strong><span>एक साहित्यिक पहचान</span></div><div><strong>∞</strong><span>शब्दों की संभावनाएँ</span></div>
+</section>
+
+<section class="section" id="shayari">
+  <div class="section-heading"><div><p class="eyebrow">शब्दों का संसार</p><h2>शायरी संग्रह</h2></div><p>हर एहसास के लिए एक पन्ना, हर पन्ने पर कुछ अपने शब्द।</p></div>
+  <div class="filters" id="categoryFilters">
+    <button class="filter active" data-category="सभी">सभी</button><button class="filter" data-category="प्रेम">प्रेम</button>
+    <button class="filter" data-category="दर्द">दर्द</button><button class="filter" data-category="भावनात्मक">भावनात्मक</button>
+    <button class="filter" data-category="प्रेरणादायक">प्रेरणादायक</button><button class="filter" data-category="दोस्ती">दोस्ती</button>
+  </div>
+  <div class="search-row"><input id="searchInput" type="search" placeholder="रचना या लेखक खोजें…"><span id="resultCount"></span></div>
+  <div class="content-grid" id="shayariGrid">
+    <article class="writing-card" data-category="प्रेरणादायक"><span class="tag">प्रेरणादायक</span><p>राहों में धूप हो तो हौसला बनाए रखना,<br>मंज़िल मिले न मिले, कदम बढ़ाए रखना।<br>वक़्त भी झुकता है मेहनत के सामने,<br>बस अपने सपनों से रिश्ता बनाए रखना।</p><footer><span>ARS संग्रह</span><button class="share-btn" data-share="राहों में धूप हो तो हौसला बनाए रखना…">↗ साझा करें</button></footer></article>
+    <article class="writing-card" data-category="दोस्ती"><span class="tag">दोस्ती</span><p>कुछ रिश्ते नाम के मोहताज नहीं होते,<br>हर पल साथ हों, यह ज़रूरी नहीं होते।<br>जो यादों में भी मुस्कान छोड़ जाएँ,<br>वही दोस्त कभी आम नहीं होते।</p><footer><span>ARS संग्रह</span><button class="share-btn" data-share="कुछ रिश्ते नाम के मोहताज नहीं होते…">↗ साझा करें</button></footer></article>
+    <article class="writing-card" data-category="प्रेम"><span class="tag">प्रेम</span><p>शब्द कम पड़ें तो ख़ामोशी पढ़ लेना,<br>कभी आँखों में छिपी बात भी समझ लेना।<br>हर एहसास कहा नहीं जाता ज़ुबाँ से,<br>कभी दिल की लिखावट भी पढ़ लेना।</p><footer><span>ARS संग्रह</span><button class="share-btn" data-share="शब्द कम पड़ें तो ख़ामोशी पढ़ लेना…">↗ साझा करें</button></footer></article>
+  </div>
+  <p class="empty-state hidden" id="emptyState">इस खोज में अभी कोई रचना नहीं मिली।</p>
+</section>
+
+<section class="quote-band"><span>“</span><p>किताबें केवल पढ़ी नहीं जातीं,<br>कभी-कभी उनमें हम ख़ुद को भी खोज लेते हैं।</p><small>— ARS साहित्यिक विचार</small></section>
+
+<section class="section split-section" id="poetry">
+  <div class="section-heading"><div><p class="eyebrow">भावों की अभिव्यक्ति</p><h2>कविता संसार</h2></div><p>जीवन, प्रकृति, समाज और मन के अनकहे भावों को समर्पित।</p></div>
+  <div class="feature-panel"><div class="feature-icon">✒</div><div><h3>अपनी कविता साझा करें</h3><p>अपनी मौलिक कविता लेखक समुदाय के माध्यम से भेजें। समीक्षा के बाद स्वीकृत रचना यहाँ प्रकाशित की जा सकती है।</p><a href="#community" class="text-link">लेखक समुदाय से जुड़ें →</a></div></div>
+</section>
+
+<section class="section story-section" id="stories">
+  <div class="section-heading"><div><p class="eyebrow">कथाओं की दुनिया</p><h2>कहानी संसार</h2></div><p>प्रेरक, सामाजिक और जीवन से जुड़ी कहानियों का मंच।</p></div>
+  <div class="story-grid"><div class="story-tile"><span>01 / प्रेरणा</span><h3>संघर्ष से संभावना तक</h3><p>ऐसी कहानियाँ जो आगे बढ़ने का साहस दें।</p></div><div class="story-tile"><span>02 / समाज</span><h3>समाज के आईने में</h3><p>रिश्तों, बदलाव और मानवीय संवेदना की कथाएँ।</p></div><div class="story-tile"><span>03 / जीवन</span><h3>ज़िंदगी के पन्ने</h3><p>अनुभवों से उपजी छोटी-बड़ी कहानियाँ।</p></div></div>
+  <p class="notice">नोट: किसी कहानी को “सच्ची घटना” तभी कहा जाएगा जब उसके तथ्य और स्रोत सत्यापित हों।</p>
+</section>
+
+<section class="book-section" id="book">
+  <div class="book-cover"><div class="cover-emblem">ARS</div><span>आदर्श राज शायर</span><h2>मेरी<br><em>पहली उड़ान</em></h2><small>शब्दों में सफ़र की शुरुआत</small><div class="cover-ornament">❧</div></div>
+  <div class="book-copy"><p class="eyebrow">ARS पुस्तकालय</p><h2>मेरी पहली उड़ान</h2><p>एक लेखक की शुरुआत, उसके अनुभव और शब्दों की दुनिया। इस पुस्तक का विस्तृत संस्करण तैयार होने पर यहाँ परिचय और उपलब्धता की जानकारी जोड़ी जाएगी।</p><span class="coming-soon">पुस्तक परिचय जल्द उपलब्ध होगा</span></div>
+</section>
+
+<section class="section community-section" id="community">
+  <div class="community-card"><div><p class="eyebrow">आपका मंच, आपकी आवाज़</p><h2>लेखक समुदाय से जुड़ें</h2><p>अपनी मौलिक शायरी, कविता या कहानी भेजें। आपकी रचना पहले समीक्षा के लिए जाएगी; स्वीकृति के बाद प्रकाशित होगी।</p><ul><li>अपनी रचनाओं का रिकॉर्ड</li><li>प्रकाशन की स्थिति देख सकेंगे</li><li>योग्य योगदान पर प्रमाणपत्र</li></ul></div>
+    <form id="submissionForm" class="submission-form"><label>आपका नाम<input name="author_name" required maxlength="80" placeholder="पूरा नाम"></label><label>रचना का शीर्षक<input name="title" required maxlength="140" placeholder="शीर्षक"></label><label>रचना का प्रकार<select name="type"><option>शायरी</option><option>कविता</option><option>कहानी</option></select></label><label>श्रेणी<select name="category"><option>प्रेम</option><option>दर्द</option><option>भावनात्मक</option><option>प्रेरणादायक</option><option>दोस्ती</option><option>अन्य</option></select></label><label>आपकी रचना<textarea name="body" required minlength="20" maxlength="10000" rows="5" placeholder="अपनी मौलिक रचना यहाँ लिखें…"></textarea></label><button class="btn btn-green" type="submit">रचना समीक्षा के लिए भेजें</button><small id="submissionMessage" class="form-message">रचना भेजने के लिए पहले लॉगिन करें।</small></form>
+  </div>
+</section>
+
+<section class="founder-section"><div class="founder-seal">ARS</div><div><p class="eyebrow">संस्थापक का संदेश</p><h2>आदर्श राज</h2><p>“हर व्यक्ति के भीतर एक कहानी और हर कहानी के भीतर एक संसार होता है। साहित्यिक शब्द लोक उसी संसार को सम्मान और मंच देने का एक प्रयास है।”</p><span>Founder — ARS (Adarsh Raj Shayar)</span></div></section>
+</main>
+
+<footer class="site-footer" id="contact"><div class="footer-brand"><span class="brand-mark">ARS</span><div><strong>साहित्यिक शब्द लोक</strong><small>शब्दों से संवेदना तक…</small></div></div><p>साहित्य, संवेदना और रचनात्मकता का साझा मंच।</p><div class="footer-links"><a href="#home">मुखपृष्ठ</a><a href="#community">रचना भेजें</a><a href="#book">ARS पुस्तकालय</a><a href="mailto:contact@example.com">संपर्क</a></div><small>© <span id="year"></span> ARS — सर्वाधिकार सुरक्षित।</small><small class="disclaimer">यह वेबसाइट साहित्यिक समुदाय का मंच है। प्रमाणपत्र केवल वेबसाइट द्वारा जारी सहभागिता/प्रकाशन रिकॉर्ड हैं, सरकारी या शैक्षणिक मान्यता का दावा नहीं।</small></footer>
+
+<div class="modal hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal-card"><button class="modal-close" id="closeAuth" aria-label="बंद करें">×</button><p class="eyebrow">ARS समुदाय</p><h2 id="authTitle">लॉगिन / रजिस्ट्रेशन</h2><div class="auth-tabs"><button class="active" data-auth="login">लॉगिन</button><button data-auth="signup">नया खाता</button></div><form id="authForm"><label>ईमेल<input type="email" name="email" required autocomplete="email"></label><label>पासवर्ड<input type="password" name="password" required minlength="8" autocomplete="current-password"></label><label id="displayNameWrap" class="hidden">नाम<input name="display_name" maxlength="80"></label><button class="btn btn-green" id="authSubmit" type="submit">लॉगिन करें</button><p id="authMessage" class="form-message"></p></form><p class="tiny-note">खाता बनाने के बाद ईमेल सत्यापन की आवश्यकता हो सकती है।</p></div></div>
+
+<div class="modal hidden" id="dashboardModal" role="dialog" aria-modal="true"><div class="modal-card wide"><button class="modal-close" id="closeDashboard">×</button><p class="eyebrow">आपका ARS खाता</p><h2 id="dashboardTitle">डैशबोर्ड</h2><div id="dashboardContent"></div><button class="btn btn-outline dark-outline" id="logoutButton">लॉगआउट</button></div></div>
+<div class="toast" id="toast" role="status"></div>
+</body></html>
