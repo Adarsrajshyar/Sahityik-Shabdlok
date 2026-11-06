@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="साहित्यिक शब्द लोक — ARS, शायरी, कविता, कहानियों और लेखकों का अपना साहित्यिक मंच।">
+  <title>साहित्यिक शब्द लोक | ARS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html" class="brand">
+    <span class="logo">ARS</span>
+    <span>
+      <strong>साहित्यिक शब्द लोक</strong>
+      <small>शब्दों से संवेदना तक…</small>
+    </span>
+  </a>
+
+  <button class="menu-button" id="menuButton">☰</button>
+
+  <nav id="navigation">
+    <a href="index.html">मुखपृष्ठ</a>
+    <a href="about.html">हमारे बारे में</a>
+    <a href="shayari.html">शायरी</a>
+    <a href="poetry.html">कविता</a>
+    <a href="stories.html">कहानियाँ</a>
+    <a href="ars-book.html">ARS Book</a>
+    <a href="community.html">लेखक समुदाय</a>
+    <a href="login.html" class="nav-login">लॉगिन / जुड़ें</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">ARS साहित्यिक परिवार में आपका स्वागत है</span>
+
+    <h1>
+      शब्दों में छिपे एहसासों को
+      <span>एक नई पहचान दें।</span>
+    </h1>
+
+    <p>
+      साहित्यिक शब्द लोक एक ऐसा मंच है जहाँ शायरी, कविता,
+      कहानियाँ और लेखकों की रचनात्मकता को मिलता है सम्मान।
+      पढ़िए, लिखिए और अपनी प्रतिभा को दुनिया तक पहुँचाइए।
+    </p>
+
+    <div class="hero-buttons">
+      <a href="shayari.html" class="btn primary">रचनाएँ पढ़ें</a>
+      <a href="community.html" class="btn secondary">लेखक बनें</a>
+    </div>
+
+    <div class="hero-signature">
+      ✦ शब्दों से संवेदना तक — ARS
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-circle"></div>
+    <div class="hero-book">
+      <span>ARS</span>
+      <h2>साहित्यिक<br>शब्द लोक</h2>
+      <small>शब्दों की अपनी दुनिया</small>
+    </div>
+    <span class="decoration decoration-one">❧</span>
+    <span class="decoration decoration-two">❧</span>
+  </div>
+</section>
+
+<section class="welcome-strip">
+  <div>
+    <strong>125+</strong>
+    <span>शायरी का लक्ष्य</span>
+  </div>
+  <div>
+    <strong>40</strong>
+    <span>कहानियाँ</span>
+  </div>
+  <div>
+    <strong>25</strong>
+    <span>कविताएँ</span>
+  </div>
+  <div>
+    <strong>ARS</strong>
+    <span>एक साहित्यिक पहचान</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <span class="eyebrow">हमारा साहित्यिक संसार</span>
+    <h2>आप क्या पढ़ना चाहेंगे?</h2>
+    <p>अपने मनपसंद विषय को चुनिए और शब्दों की दुनिया में खो जाइए।</p>
+  </div>
+
+  <div class="category-grid">
+
+    <a href="shayari.html" class="category-card">
+      <span>♡</span>
+      <h3>शायरी संग्रह</h3>
+      <p>प्रेम, दर्द, दोस्ती और जीवन के एहसास।</p>
+      <b>शायरी पढ़ें →</b>
+    </a>
+
+    <a href="poetry.html" class="category-card">
+      <span>✒</span>
+      <h3>कविता संसार</h3>
+      <p>भावनाओं और कल्पनाओं की सुंदर अभिव्यक्ति।</p>
+      <b>कविताएँ पढ़ें →</b>
+    </a>
+
+    <a href="stories.html" class="category-card">
+      <span>▤</span>
+      <h3>कहानी संसार</h3>
+      <p>जीवन, प्रेरणा, समाज और रहस्य की कहानियाँ।</p>
+      <b>कहानियाँ पढ़ें →</b>
+    </a>
+
+    <a href="ars-book.html" class="category-card">
+      <span>❖</span>
+      <h3>ARS पुस्तकालय</h3>
+      <p>आदर्श राज शायर की पुस्तक और साहित्यिक सफर।</p>
+      <b>पुस्तक देखें →</b>
+    </a>
+
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="section-title">
+    <span class="eyebrow">आज के विशेष शब्द</span>
+    <h2>कुछ पंक्तियाँ, कुछ एहसास</h2>
+  </div>
+
+  <div class="featured-card">
+    <span class="featured-label">प्रेरणादायक शायरी</span>
+    <p>
+      मुश्किलों से कह दो, अभी हिम्मत बाकी है,<br>
+      मेरी आँखों में सपनों की चमक बाकी है।<br>
+      गिरकर भी उठना मेरी आदत में शामिल है,<br>
+      मेरी मंज़िल से मेरी मुलाकात बाकी है।
+    </p>
+    <small>— ARS साहित्यिक संग्रह</small>
+  </div>
+</section>
+
+<section class="book-preview">
+  <div class="book-cover">
+    <span>ARS</span>
+    <h2>मेरी<br><em>पहली उड़ान</em></h2>
+    <small>आदर्श राज शायर</small>
+  </div>
+
+  <div class="book-description">
+    <span class="eyebrow">ARS पुस्तकालय</span>
+    <h2>मेरी पहली उड़ान</h2>
+    <p>
+      यह एक साहित्यिक सफर की शुरुआत है।
+      सपनों, अनुभवों, भावनाओं और शब्दों को
+      एक पुस्तक में संजोने का प्रयास।
+    </p>
+    <a href="ars-book.html" class="btn primary">पुस्तक के बारे में जानें</a>
+  </div>
+</section>
+
+<section class="community-preview">
+  <span class="eyebrow">आपकी प्रतिभा, आपका मंच</span>
+  <h2>क्या आप भी लिखते हैं?</h2>
+  <p>
+    अपनी मौलिक शायरी, कविता या कहानी साहित्यिक शब्द लोक
+    के लेखक समुदाय में भेजिए। समीक्षा के बाद स्वीकृत
+    रचनाएँ वेबसाइट पर प्रकाशित की जा सकती हैं।
+  </p>
+  <a href="community.html" class="btn gold">लेखक समुदाय से जुड़ें</a>
+</section>
+
+<section class="youtube-section">
+  <div class="youtube-icon">▶</div>
+  <div>
+    <span class="eyebrow">हमसे YouTube पर भी जुड़ें</span>
+    <h2>Adarsh Shyari</h2>
+    <p>
+      यह साहित्यिक शब्द लोक से जुड़ा हमारा YouTube चैनल है।
+      शायरी, साहित्य और रचनात्मक प्रस्तुतियों के लिए
+      हमारे चैनल से भी जुड़ सकते हैं।
+    </p>
+    <a
+      href="https://www.youtube.com/@Adarshshyari"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn youtube-button">
+      YouTube चैनल देखें →
+    </a>
+  </div>
+</section>
+
+<section class="founder-section">
+  <div class="founder-logo">ARS</div>
+  <div>
+    <span class="eyebrow">संस्थापक का संदेश</span>
+    <h2>आदर्श राज</h2>
+    <p>
+      “हर इंसान के भीतर एक कहानी होती है और हर कहानी में
+      एक नई दुनिया। साहित्यिक शब्द लोक उन शब्दों को
+      पहचान देने का एक छोटा-सा प्रयास है।”
+    </p>
+    <strong>Founder — ARS (Adarsh Raj Shayar)</strong>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">
+    <span class="logo">ARS</span>
+    <h2>साहित्यिक शब्द लोक</h2>
+    <p>शब्दों से संवेदना तक…</p>
+  </div>
+
+  <div class="footer-links">
+    <a href="index.html">मुखपृष्ठ</a>
+    <a href="about.html">हमारे बारे में</a>
+    <a href="community.html">लेखक समुदाय</a>
+    <a href="certificate.html">प्रमाणपत्र</a>
+    <a href="verify.html">प्रमाणपत्र सत्यापन</a>
+    <a href="https://www.youtube.com/@Adarshshyari" target="_blank" rel="noopener noreferrer">YouTube</a>
+  </div>
+
+  <p>© <span id="currentYear"></span> ARS — सर्वाधिकार सुरक्षित।</p>
+  <small>
+    यह एक स्वतंत्र साहित्यिक मंच है। इसके प्रमाणपत्र
+    सरकारी या शैक्षणिक प्रमाणपत्र नहीं हैं।
+  </small>
+</footer>
+
+</body>
+</html>
