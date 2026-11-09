@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>प्रमाणपत्र सत्यापन | साहित्यिक शब्द लोक</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .verify-wrap{max-width:720px;margin:45px auto;padding:20px}
+    .verify-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:16px;padding:30px;box-shadow:0 8px 25px #263d2510}
+    .verify-card h1{color:#315b38}
+    .verify-field{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+    .verify-field input{flex:1;min-width:220px;padding:13px;border:1px solid #d9d5c8;border-radius:8px;font:inherit}
+    .verify-field button{padding:12px 20px;background:#315b38;color:white;border:0;border-radius:8px;font:inherit;cursor:pointer}
+    .verify-result{display:none;margin-top:22px;padding:20px;border-radius:10px;background:#f0f4e9;line-height:1.8}
+    .verify-result h2{color:#315b38}
+    .verify-error{background:#fff0ed;color:#963c2e}
+    .verify-note{color:#777;line-height:1.8}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="verify-wrap">
+    <section class="verify-card">
+      <h1>प्रमाणपत्र सत्यापन</h1>
+      <p class="verify-note">
+        साहित्यिक शब्द लोक द्वारा जारी प्रमाणपत्र की वास्तविकता जाँचने के लिए प्रमाणपत्र ID दर्ज करें।
+      </p>
+
+      <form id="verify-form">
+        <div class="verify-field">
+          <input type="text" id="verify-id" placeholder="Certificate ID दर्ज करें" required maxlength="60">
+          <button type="submit">सत्यापित करें</button>
+        </div>
+      </form>
+
+      <div id="verify-message" role="status" aria-live="polite" class="verify-result">
+        सत्यापन का परिणाम यहाँ दिखाई देगा।
+      </div>
+
+      <p class="verify-note">
+        प्रमाणपत्र का रिकॉर्ड उपलब्ध न होने पर वेबसाइट उसकी वैधता की पुष्टि नहीं कर सकती। किसी प्रमाणपत्र को केवल उसके डिज़ाइन या तस्वीर के आधार पर सत्यापित न मानें।
+      </p>
+      <p><a href="certificate.html">प्रमाणपत्र पेज पर जाएँ</a></p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="certificate.js"></script>
+</body>
+</html>
