@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक से संपर्क करें।">
+  <title>संपर्क करें | साहित्यिक शब्द लोक</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-hero{padding:45px 20px;text-align:center;background:#edf2e7;color:#315b38}
+    .contact-hero h1{font-size:34px;margin:0 0 10px}
+    .contact-wrap{max-width:850px;margin:35px auto;padding:20px}
+    .contact-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:15px;padding:28px}
+    .contact-card h2{color:#315b38}
+    .contact-card p{color:#666;line-height:1.8}
+    .contact-field{margin:16px 0}
+    .contact-field label{display:block;color:#315b38;font-weight:600;margin-bottom:7px}
+    .contact-field input,.contact-field textarea,.contact-field select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d9d5c8;border-radius:8px;font:inherit}
+    .contact-field textarea{min-height:140px;resize:vertical}
+    .contact-submit{background:#315b38;color:white;border:0;padding:12px 20px;border-radius:8px;font:inherit;cursor:pointer}
+    .contact-info{margin-top:22px;background:#f0f4e9;padding:18px;border-radius:10px;color:#52634d;line-height:1.8}
+    #contact-message{margin-top:14px;color:#315b38}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="contact-hero">
+      <h1>संपर्क करें</h1>
+      <p>आपके सुझाव, प्रश्न और प्रतिक्रियाएँ हमारे लिए महत्वपूर्ण हैं।</p>
+    </section>
+
+    <section class="contact-wrap">
+      <div class="contact-card">
+        <h2>हमें संदेश भेजें</h2>
+        <p>वेबसाइट, रचना, प्रकाशन या अन्य जानकारी से जुड़े प्रश्न यहाँ भेज सकते हैं।</p>
+
+        <form id="contact-form">
+          <div class="contact-field">
+            <label for="contact-name">आपका नाम</label>
+            <input type="text" id="contact-name" name="name" maxlength="80" required>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-email">ईमेल पता</label>
+            <input type="email" id="contact-email" name="email" required>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-subject">संदेश का विषय</label>
+            <select id="contact-subject" name="subject" required>
+              <option value="">विषय चुनें</option>
+              <option value="website">वेबसाइट से जुड़ी समस्या</option>
+              <option value="publication">रचना और प्रकाशन</option>
+              <option value="certificate">प्रमाणपत्र</option>
+              <option value="suggestion">सुझाव</option>
+              <option value="other">अन्य</option>
+            </select>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-text">आपका संदेश</label>
+            <textarea id="contact-text" name="message" maxlength="3000" required placeholder="अपना संदेश लिखें..."></textarea>
+          </div>
+
+          <button type="submit" class="contact-submit">संदेश भेजें</button>
+          <div id="contact-message" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="contact-info">
+          <strong>ARS – साहित्यिक शब्द लोक</strong><br>
+          YouTube:
+          <a href="https://www.youtube.com/@Adarshshyari" target="_blank" rel="noopener noreferrer">Adarshshyari</a>
+          <br>
+          Instagram और अन्य संपर्क विवरण Admin द्वारा उपलब्ध होने पर यहाँ जोड़े जाएँगे।
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="content.js"></script>
+</body>
+</html>
