@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक पर लेखक की प्रोफाइल और प्रकाशित रचनाएँ।">
+  <title>लेखक प्रोफाइल | साहित्यिक शब्द लोक</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .profile-wrap{max-width:950px;margin:35px auto;padding:20px}
+    .profile-card{background:#fffdf6;border:1px solid #e6dfc9;border-radius:18px;padding:28px;box-shadow:0 8px 25px #263d2510}
+    .profile-top{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+    .profile-avatar{width:100px;height:100px;border-radius:50%;background:#e8efdf;color:#315b38;display:grid;place-items:center;font-size:38px;font-weight:700;border:3px solid #c5a75b}
+    .profile-name{font-size:28px;color:#23452c;margin:0}
+    .profile-bio{color:#666;line-height:1.8}
+    .profile-stats{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+    .stat{background:#f0f4e9;padding:12px 18px;border-radius:10px;color:#315b38}
+    .profile-section{margin-top:30px}
+    .profile-section h2{color:#315b38;border-bottom:1px solid #e5dfcc;padding-bottom:10px}
+    .profile-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .profile-btn{display:inline-block;padding:10px 18px;background:#315b38;color:white;border-radius:8px;text-decoration:none}
+    .profile-btn.secondary{background:#e9eddf;color:#315b38}
+    .profile-message{padding:18px;background:#f7f5ed;border-radius:10px;color:#666}
+    @media(max-width:600px){.profile-card{padding:18px}.profile-name{font-size:23px}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="profile-wrap">
+    <div class="profile-card">
+      <div class="profile-top">
+        <div class="profile-avatar" id="profile-avatar">ले</div>
+        <div>
+          <h1 class="profile-name" id="author-name">लेखक का नाम</h1>
+          <p class="profile-bio" id="author-location">साहित्यिक शब्द लोक के लेखक</p>
+          <p class="profile-bio" id="author-joined">लेखक प्रोफाइल</p>
+        </div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat">प्रकाशित रचनाएँ: <strong id="published-count">0</strong></div>
+        <div class="stat">प्रमाणपत्र: <strong id="certificate-count">0</strong></div>
+      </div>
+
+      <div class="profile-section">
+        <h2>लेखक परिचय</h2>
+        <p class="profile-bio" id="author-bio">इस लेखक ने अभी अपना परिचय साझा नहीं किया है।</p>
+      </div>
+
+      <div class="profile-section">
+        <h2>प्रकाशित रचनाएँ</h2>
+        <div id="author-publications" class="profile-message">
+          प्रकाशित रचनाओं की जानकारी यहाँ दिखाई देगी।
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <h2>प्रकाशन प्रमाणपत्र</h2>
+        <div id="author-certificates" class="profile-message">
+          सत्यापित प्रमाणपत्र उपलब्ध होने पर यहाँ दिखाई देंगे।
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <a href="community.html" class="profile-btn">लेखक समुदाय</a>
+        <a href="author-dashboard.html" class="profile-btn secondary">लेखक डैशबोर्ड</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
