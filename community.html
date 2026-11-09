@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक लेखक समुदाय से जुड़ें।">
+  <title>लेखक समुदाय | साहित्यिक शब्द लोक</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .community-hero{padding:50px 20px;text-align:center;background:#edf2e7;color:#315b38}
+    .community-hero h1{font-size:34px;margin:0 0 10px}
+    .community-wrap{max-width:950px;margin:35px auto;padding:20px}
+    .community-intro{text-align:center;color:#666;line-height:1.9;max-width:750px;margin:0 auto 30px}
+    .community-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+    .community-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:13px;padding:22px}
+    .community-card h2{color:#315b38;font-size:22px}
+    .community-card p{color:#666;line-height:1.8}
+    .community-steps{background:#f0f4e9;padding:22px;border-radius:12px;margin-top:25px;line-height:2;color:#52634d}
+    .community-actions{text-align:center;margin:28px 0}
+    .community-btn{display:inline-block;margin:6px;padding:11px 20px;background:#315b38;color:white;border-radius:8px;text-decoration:none}
+    .community-btn.light{background:#e9eddf;color:#315b38}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="community-hero">
+      <h1>लेखक समुदाय</h1>
+      <p>जहाँ विचार मिलते हैं और शब्दों को नई पहचान मिलती है।</p>
+    </section>
+
+    <section class="community-wrap">
+      <p class="community-intro">
+        साहित्यिक शब्द लोक पाठकों और लेखकों के लिए एक साहित्यिक मंच है।
+        यहाँ लेखक अपनी मौलिक रचनाएँ साझा कर सकते हैं और पाठक प्रकाशित साहित्य पढ़ सकते हैं।
+      </p>
+
+      <div class="community-grid">
+        <article class="community-card">
+          <h2>पाठक (Reader)</h2>
+          <p>शायरी, कविता और कहानियाँ पढ़ें। पसंदीदा साहित्य से जुड़ें और नए लेखकों को जानें।</p>
+        </article>
+
+        <article class="community-card">
+          <h2>लेखक (Author)</h2>
+          <p>अपनी मौलिक रचनाएँ जमा करें, समीक्षा की स्थिति देखें और प्रकाशित रचनाओं का रिकॉर्ड अपने डैशबोर्ड में पाएँ।</p>
+        </article>
+
+        <article class="community-card">
+          <h2>आमंत्रित लेखक</h2>
+          <p>Admin द्वारा चुने गए लेखकों को ARS लेखक समूह में शामिल होने का निमंत्रण मिल सकता है। इसमें शामिल होना वैकल्पिक होगा।</p>
+        </article>
+      </div>
+
+      <div class="community-steps">
+        <strong>लेखक बनने की प्रक्रिया:</strong>
+        <ol>
+          <li>Author के रूप में अकाउंट बनाएँ।</li>
+          <li>लॉगिन करके अपनी मौलिक रचना जमा करें।</li>
+          <li>रचना की समीक्षा का इंतजार करें।</li>
+          <li>स्वीकृति और प्रकाशन के बाद रचना वेबसाइट पर दिखाई देगी।</li>
+          <li>प्रकाशित रचना के लिए प्रमाणपत्र उपलब्ध कराया जा सकता है।</li>
+        </ol>
+      </div>
+
+      <div class="community-actions">
+        <a href="register.html" class="community-btn">लेखक के रूप में जुड़ें</a>
+        <a href="login.html" class="community-btn light">लॉगिन करें</a>
+        <a href="submit.html" class="community-btn light">रचना भेजें</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
