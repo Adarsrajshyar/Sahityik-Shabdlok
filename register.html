@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक पर अपना अकाउंट बनाएँ।">
+  <title>रजिस्ट्रेशन | साहित्यिक शब्द लोक</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-wrap{max-width:540px;margin:40px auto;padding:20px}
+    .auth-card{background:#fffdf6;border:1px solid #e4ddc9;border-radius:18px;padding:30px;box-shadow:0 8px 25px #263d2510}
+    .auth-card h1{text-align:center;color:#315b38;margin-top:0}
+    .auth-intro{text-align:center;color:#777;line-height:1.7;margin-bottom:25px}
+    .auth-field{margin:16px 0}
+    .auth-field label{display:block;font-weight:600;color:#315b38;margin-bottom:7px}
+    .auth-field input,.auth-field select,.auth-field textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d9d5c8;border-radius:8px;background:white;font:inherit}
+    .auth-submit{width:100%;border:0;border-radius:8px;padding:13px;background:#315b38;color:white;font:inherit;font-weight:600;cursor:pointer;margin-top:12px}
+    .auth-note{font-size:14px;color:#777;line-height:1.7;margin-top:18px}
+    .auth-links{text-align:center;margin-top:20px}
+    .auth-links a{color:#315b38;font-weight:600}
+    #register-message{margin-top:15px;padding:12px;border-radius:8px;display:none}
+    .auth-consent{display:flex;gap:9px;align-items:flex-start;font-size:14px;color:#666}
+    .auth-consent input{margin-top:5px}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <h1>नया अकाउंट बनाएँ</h1>
+      <p class="auth-intro">साहित्यिक शब्द लोक से जुड़ें और अपनी रचनात्मक यात्रा शुरू करें।</p>
+
+      <form id="register-form">
+        <div class="auth-field">
+          <label for="full-name">पूरा नाम</label>
+          <input type="text" id="full-name" name="fullName" placeholder="अपना नाम लिखें" required maxlength="80">
+        </div>
+
+        <div class="auth-field">
+          <label for="register-email">ईमेल पता</label>
+          <input type="email" id="register-email" name="email" placeholder="example@email.com" required>
+        </div>
+
+        <div class="auth-field">
+          <label for="display-name">लेखकीय नाम (यदि अलग हो)</label>
+          <input type="text" id="display-name" name="displayName" placeholder="आपका साहित्यिक नाम" maxlength="80">
+        </div>
+
+        <div class="auth-field">
+          <label for="user-role">आप किस रूप में जुड़ना चाहते हैं?</label>
+          <select id="user-role" name="role" required>
+            <option value="reader">Reader – पाठक</option>
+            <option value="author">Author – लेखक</option>
+          </select>
+        </div>
+
+        <div class="auth-field">
+          <label for="register-bio">संक्षिप्त परिचय (वैकल्पिक)</label>
+          <textarea id="register-bio" name="bio" rows="3" maxlength="500" placeholder="अपने बारे में कुछ लिखें"></textarea>
+        </div>
+
+        <label class="auth-consent">
+          <input type="checkbox" id="register-consent" required>
+          <span>मैं पुष्टि करता/करती हूँ कि दी गई जानकारी सही है और मैं नियम एवं गोपनीयता नीति से सहमत हूँ।</span>
+        </label>
+
+        <button type="submit" class="auth-submit">ईमेल OTP प्राप्त करें</button>
+        <div id="register-message" role="status" aria-live="polite"></div>
+      </form>
+
+      <p class="auth-note">
+        रजिस्ट्रेशन के लिए ईमेल OTP सत्यापन आवश्यक होगा। अकाउंट बनाते समय Reader या Author चुनें। Admin और Publisher की भूमिका केवल अधिकृत प्रबंधन द्वारा दी जाएगी।
+      </p>
+
+      <div class="auth-links">
+        पहले से अकाउंट है? <a href="login.html">लॉगिन करें</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="auth.js"></script>
+</body>
+</html>
