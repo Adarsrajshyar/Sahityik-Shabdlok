@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक Publisher Panel।">
+  <title>Publisher Panel | साहित्यिक शब्द लोक</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .publisher-wrap{max-width:1100px;margin:30px auto;padding:20px}
+    .publisher-wrap h1,.publisher-panel h2{color:#315b38}
+    .publisher-intro{color:#777;line-height:1.8}
+    .publisher-warning{background:#fff3df;border:1px solid #ead5aa;color:#76551e;padding:14px;border-radius:9px;line-height:1.7;margin:20px 0}
+    .publisher-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin:25px 0}
+    .publisher-stat,.publisher-panel{background:#fffdf6;border:1px solid #e5dfcc;border-radius:13px;padding:20px}
+    .publisher-stat strong{display:block;font-size:27px;color:#315b38}
+    .publisher-panel{margin:20px 0}
+    .publisher-list{padding:15px;background:#f7f5ed;border-radius:9px;color:#777;line-height:1.8}
+    .publisher-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .publisher-actions button{padding:10px 16px;background:#315b38;color:white;border:0;border-radius:8px;font:inherit;cursor:pointer}
+    .publisher-actions button.secondary{background:#e9eddf;color:#315b38}
+    .publisher-item{border:1px solid #e5dfcc;padding:15px;border-radius:9px;margin:12px 0;background:white}
+    .publisher-item h3{color:#315b38;margin:0 0 8px}
+    #publisher-message{margin-top:12px;color:#315b38}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="publisher-wrap">
+    <h1>ARS Publisher Panel</h1>
+    <p class="publisher-intro">लेखकों द्वारा भेजी गई रचनाओं की समीक्षा और अधिकृत प्रकाशन का प्रबंधन करें।</p>
+
+    <div id="publisher-access-message" class="publisher-warning" role="status" aria-live="polite">
+      Publisher अनुमति की जाँच की जा रही है। केवल अधिकृत Publisher ही इस पैनल का उपयोग कर सकता है।
+    </div>
+
+    <div id="publisher-content" hidden>
+      <div class="publisher-stats">
+        <div class="publisher-stat">कुल रचनाएँ<strong id="publisher-total">—</strong></div>
+        <div class="publisher-stat">समीक्षा हेतु<strong id="publisher-pending">—</strong></div>
+        <div class="publisher-stat">प्रकाशित<strong id="publisher-published">—</strong></div>
+      </div>
+
+      <section class="publisher-panel">
+        <h2>समीक्षा के लिए प्राप्त रचनाएँ</h2>
+        <p class="publisher-intro">हर रचना की मौलिकता, भाषा और उपयुक्तता जाँचें। केवल उचित समीक्षा के बाद ही प्रकाशन करें।</p>
+        <div id="publisher-submissions" class="publisher-list">
+          रचनाओं की सूची लोड हो रही है...
+        </div>
+      </section>
+
+      <section class="publisher-panel">
+        <h2>प्रकाशित रचनाएँ</h2>
+        <div id="publisher-published-list" class="publisher-list">
+          प्रकाशित रचनाओं की सूची यहाँ दिखाई देगी।
+        </div>
+      </section>
+
+      <section class="publisher-panel">
+        <h2>अन्य विकल्प</h2>
+        <div class="publisher-actions">
+          <button type="button" onclick="location.href='admin.html'">Admin Panel</button>
+          <button type="button" class="secondary" onclick="location.href='index.html'">वेबसाइट देखें</button>
+        </div>
+        <div id="publisher-message" role="status" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="publisher.js"></script>
+</body>
+</html>
