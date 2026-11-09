@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ARS Book – Adarsh Raj Shayar की साहित्यिक पुस्तक।">
+  <title>ARS Book | साहित्यिक शब्द लोक</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .book-hero{background:#edf2e7;padding:55px 20px;text-align:center;color:#315b38}
+    .book-hero h1{font-size:36px;margin:0 0 10px}
+    .book-wrap{max-width:950px;margin:35px auto;padding:20px}
+    .book-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:16px;padding:30px;display:grid;grid-template-columns:230px 1fr;gap:30px;align-items:center}
+    .book-cover{min-height:310px;background:linear-gradient(145deg,#23452c,#52754a);border:6px double #c7a85d;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff4d5;padding:15px;box-sizing:border-box}
+    .book-cover strong{font-size:27px}
+    .book-cover span{margin-top:20px;font-size:15px}
+    .book-info h2{color:#315b38}
+    .book-info p{line-height:1.9;color:#666}
+    .book-status{display:inline-block;background:#f1ead8;color:#80652e;padding:7px 13px;border-radius:20px;font-size:14px}
+    .book-note{background:#f0f4e9;padding:16px;border-radius:10px;color:#52634d;line-height:1.8;margin-top:20px}
+    @media(max-width:650px){.book-card{grid-template-columns:1fr}.book-cover{max-width:230px;width:100%;margin:auto}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="book-hero">
+      <h1>ARS Book</h1>
+      <p>शब्दों में भावनाएँ, विचारों में जीवन।</p>
+    </section>
+
+    <section class="book-wrap">
+      <div class="book-card">
+        <div class="book-cover" aria-label="ARS Book का प्रारंभिक कवर">
+          <strong>ARS BOOK</strong>
+          <span>Adarsh Raj Shayar</span>
+          <span>साहित्यिक शब्द लोक</span>
+        </div>
+
+        <div class="book-info">
+          <span class="book-status">पुस्तक अनुभाग</span>
+          <h2>ARS की साहित्यिक पुस्तक</h2>
+          <p>
+            इस अनुभाग में Adarsh Raj Shayar की साहित्यिक पुस्तक और उससे जुड़ी जानकारी उपलब्ध कराई जाएगी।
+            पुस्तक का परिचय, लेखक विवरण, प्रकाशन की जानकारी और उपलब्ध होने पर पढ़ने या खरीदने का आधिकारिक लिंक यहाँ जोड़ा जाएगा।
+          </p>
+          <div class="book-note" id="ars-book-content">
+            <strong>पुस्तक अपडेट:</strong>
+            पुस्तक से संबंधित नई जानकारी Admin द्वारा प्रकाशित की जाएगी।
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="content.js"></script>
+</body>
+</html>
