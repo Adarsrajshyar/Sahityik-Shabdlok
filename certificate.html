@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक प्रकाशन प्रमाणपत्र।">
+  <title>प्रकाशन प्रमाणपत्र | साहित्यिक शब्द लोक</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .certificate-wrap{max-width:950px;margin:35px auto;padding:20px}
+    .certificate-tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+    .certificate-tools input{flex:1;min-width:220px;padding:12px;border:1px solid #d9d5c8;border-radius:8px;font:inherit}
+    .certificate-tools button{padding:12px 18px;background:#315b38;color:white;border:0;border-radius:8px;font:inherit;cursor:pointer}
+    .certificate-paper{background:#fffdf6;border:8px double #b89b51;padding:38px;text-align:center;position:relative;min-height:480px;box-sizing:border-box}
+    .certificate-inner{border:1px solid #d9c58c;padding:30px 20px;min-height:410px}
+    .certificate-brand{font-size:17px;color:#315b38;font-weight:700;letter-spacing:1px}
+    .certificate-title{font-size:34px;color:#315b38;margin:18px 0}
+    .certificate-subtitle{color:#9a7937;font-size:18px}
+    .certificate-recipient{font-size:27px;color:#315b38;font-weight:700;border-bottom:1px solid #c8ad68;display:inline-block;padding:8px 25px;margin:15px 0}
+    .certificate-description{font-size:17px;line-height:2;color:#555;max-width:650px;margin:15px auto}
+    .certificate-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-top:35px;text-align:center;flex-wrap:wrap}
+    .certificate-sign{color:#315b38;min-width:150px}
+    .certificate-seal{width:85px;height:85px;border:2px solid #b89b51;border-radius:50%;display:grid;place-items:center;color:#9a7937;margin:auto;font-weight:700}
+    .certificate-qr{width:90px;height:90px;object-fit:contain}
+    .certificate-id{font-size:13px;color:#777;margin-top:20px}
+    #certificate-result{display:none}
+    #certificate-message{color:#777;margin:12px 0}
+    @media(max-width:600px){.certificate-paper{padding:12px}.certificate-inner{padding:18px 8px}.certificate-title{font-size:26px}.certificate-recipient{font-size:21px}.certificate-description{font-size:15px}}
+    @media print{body *{visibility:hidden}.certificate-paper,.certificate-paper *{visibility:visible}.certificate-paper{position:absolute;left:0;top:0;width:100%;margin:0;box-shadow:none}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="certificate-wrap">
+    <h1 style="color:#315b38">प्रकाशन प्रमाणपत्र</h1>
+    <p>अपने प्रमाणपत्र को देखने के लिए प्रमाणपत्र ID दर्ज करें।</p>
+
+    <div class="certificate-tools">
+      <input type="text" id="certificate-id-input" placeholder="उदाहरण: ARS-2026-0001">
+      <button type="button" id="find-certificate">प्रमाणपत्र खोजें</button>
+    </div>
+
+    <p id="certificate-message" role="status" aria-live="polite">प्रमाणपत्र की जानकारी खोजने के बाद यहाँ दिखाई जाएगी।</p>
+
+    <section id="certificate-result">
+      <div class="certificate-paper" id="certificate-paper">
+        <div class="certificate-inner">
+          <div class="certificate-brand">साहित्यिक शब्द लोक | ARS</div>
+          <div class="certificate-subtitle">शब्दों से संवेदना तक…</div>
+          <h2 class="certificate-title">प्रकाशन प्रमाणपत्र</h2>
+          <p>यह प्रमाणित किया जाता है कि</p>
+          <div class="certificate-recipient" id="cert-author-name">लेखक का नाम</div>
+          <p class="certificate-description">
+            की मौलिक साहित्यिक रचना
+            <strong id="cert-work-title">रचना का शीर्षक</strong>
+            को साहित्यिक शब्द लोक पर प्रकाशन हेतु स्वीकृत एवं प्रकाशित किया गया है।
+          </p>
+
+          <div class="certificate-footer">
+            <div>
+              <div id="cert-qr" class="certificate-qr"></div>
+              <small>QR द्वारा सत्यापन</small>
+            </div>
+            <div class="certificate-sign">
+              <div class="certificate-seal">ARS</div>
+              <strong>Adarsh Raj Shayar</strong><br>
+              <small>Founder – ARS</small>
+            </div>
+            <div class="certificate-sign">
+              <strong id="cert-date">—</strong><br>
+              <small>जारी करने की तिथि</small>
+            </div>
+          </div>
+
+          <p class="certificate-id">Certificate ID: <strong id="cert-id">—</strong></p>
+          <p class="certificate-id">सत्यापन: <span id="cert-verify-status">प्रमाणपत्र रिकॉर्ड से सत्यापित करें</span></p>
+        </div>
+      </div>
+
+      <div class="certificate-tools" style="margin-top:18px">
+        <button type="button" id="print-certificate">प्रिंट / PDF सेव करें</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="certificate.js"></script>
+</body>
+</html>
