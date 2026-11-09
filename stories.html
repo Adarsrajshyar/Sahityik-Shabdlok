@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक पर हिंदी कहानियाँ पढ़ें।">
+  <title>कहानियाँ | साहित्यिक शब्द लोक</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero{padding:45px 20px;text-align:center;background:#edf2e7;color:#315b38}
+    .page-hero h1{font-size:34px;margin:0 0 10px}
+    .page-hero p{color:#65715e;line-height:1.8}
+    .content-area{max-width:1100px;margin:35px auto;padding:0 20px}
+    .search-panel{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+    .search-panel input{flex:1;min-width:200px;padding:12px;border:1px solid #d9d5c8;border-radius:8px;font:inherit}
+    .filter-list{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+    .filter-list button{padding:9px 16px;border:1px solid #315b38;border-radius:20px;background:white;color:#315b38;cursor:pointer;font:inherit}
+    .filter-list button.active{background:#315b38;color:white}
+    .content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+    .story-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:13px;padding:20px}
+    .story-card h2{color:#315b38;font-size:21px}
+    .story-card p{color:#666;line-height:1.8}
+    .empty-state{padding:25px;text-align:center;color:#777;background:#f7f5ed;border-radius:10px}
+    .pagination{text-align:center;margin:25px 0}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <h1>कहानियों की दुनिया</h1>
+      <p>जीवन, प्रेरणा, समाज और रहस्य से जुड़ी कहानियों का साहित्यिक संसार।</p>
+    </section>
+
+    <section class="content-area">
+      <div class="search-panel">
+        <input type="search" id="story-search" placeholder="कहानी या लेखक का नाम खोजें..." aria-label="कहानी खोजें">
+      </div>
+
+      <div class="filter-list" id="story-filters">
+        <button type="button" class="active" data-category="all">सभी</button>
+        <button type="button" data-category="जीवन">जीवन</button>
+        <button type="button" data-category="प्रेरणा">प्रेरणा</button>
+        <button type="button" data-category="सामाजिक">सामाजिक</button>
+        <button type="button" data-category="रहस्य">रहस्य</button>
+      </div>
+
+      <div id="stories-list" class="content-grid">
+        <article class="story-card">
+          <h2>कहानियाँ जल्द उपलब्ध होंगी</h2>
+          <p>नई कहानियाँ प्रकाशित होने पर यहाँ दिखाई देंगी।</p>
+        </article>
+      </div>
+
+      <div id="stories-empty" class="empty-state" hidden>
+        इस खोज में कोई कहानी नहीं मिली।
+      </div>
+
+      <div id="stories-pagination" class="pagination"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="content.js"></script>
+</body>
+</html>
