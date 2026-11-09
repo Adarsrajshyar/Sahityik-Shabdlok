@@ -1,0 +1,9 @@
+import {getClient,notice,escapeHTML,$} from "./shared.js";
+const msg=document.querySelector("#msg");
+try{
+ const db=await getClient();
+ const form=document.querySelector("#submitForm");
+ if(form){const {data:{user}}=await db.auth.getUser();if(!user){notice(msg,"रचना जमा करने के लिए पहले लॉगिन करें।");}else form.addEventListener("submit",async e=>{e.preventDefault();const payload={author_id:user.id,title:$("#title").value.trim(),type:$("#type").value,category:$("#category").value.trim(),body:$("#body").value.trim()};const {error}=await db.from("submissions").insert(payload);notice(msg,error?error.message:"रचना समीक्षा के लिए जमा हो गई है।");if(!error)form.reset();});}
+ const box=document.querySelector("#items");
+ if(box){const path=location.pathname;const type=path.includes("shayari")?"shayari":path.includes("poetry")?"poem":"story";const {data,error}=await db.from("works").select("id,title,author_name,category,body,created_at").eq("type",type).eq("status","published").order("created_at",{ascending:false}).limit(100);if(error)throw error;const render=()=>{const q=($("#search")?.value||"").toLowerCase(),cat=$("#category")?.value||"";const rows=(data||[]).filter(x=>(!cat||x.category===cat)&&(!q||(x.title+x.body+x.author_name).toLowerCase().includes(q)));box.innerHTML=rows.length?rows.map(x=>`<article class="work-card"><h3>${escapeHTML(x.title)}</h3><p class="small muted">${escapeHTML(x.category)} · ${escapeHTML(x.author_name)}</p><p class="item-text">${escapeHTML(x.body)}</p></article>`).join(""):"<p>अभी कोई प्रकाशित रचना उपलब्ध नहीं है।</p>";};render();$("#search")?.addEventListener("input",render);$("#category")?.addEventListener("change",render);}
+}catch(e){if(msg)notice(msg,e.message);const box=document.querySelector("#items");if(box)box.innerHTML=`<p class="notice">${escapeHTML(e.message)} — Backend configuration जाँचें।</p>`;}
