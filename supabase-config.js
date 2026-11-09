@@ -10,9 +10,9 @@
   यहाँ कभी भी service_role या secret key न डालें।
 */
 
-export const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+export const SUPABASE_URL = "https://kicivjxhafcfkkwgfdfg.supabase.co";
 
-export const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
+export const SUPABASE_ANON_KEY = "sb_publishable_1fzmmfjwMEHy0hGJ_TTQDQ_5ws5RLzi";
 
 export const SUPABASE_CONFIGURED =
   SUPABASE_URL.startsWith("https://") &&
