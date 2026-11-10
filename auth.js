@@ -1,7 +1,7 @@
 
 /*
-  साहित्यिक शब्द लोक - Authentication
-  Email OTP, Registration, Login, Logout, Role Verification
+  साहित्यिक शब्द लोक - ARS Authentication
+  Email OTP Registration, Login, Logout and Role Verification
 */
 
 import { supabase } from "./supabase-client.js";
@@ -9,23 +9,38 @@ import { supabase } from "./supabase-client.js";
 const $ = (selector) => document.querySelector(selector);
 
 function showMessage(message, type = "info") {
-  let box = $("#auth-message");
+  let box =
+    $("#register-message") ||
+    $("#login-message") ||
+    $("#auth-message");
 
   if (!box) {
     box = document.createElement("div");
     box.id = "auth-message";
-    box.setAttribute("role", "status");
-    const form = $("form");
-    (form || document.body).prepend(box);
+    document.body.prepend(box);
   }
 
   box.textContent = message;
-  box.dataset.type = type;
+  box.style.display = "block";
+  box.style.padding = "12px";
+  box.style.marginTop = "14px";
+  box.style.borderRadius = "8px";
+  box.style.background =
+    type === "error" ? "#ffe8e8" :
+    type === "success" ? "#e7f6e9" : "#eef3f8";
+  box.style.color =
+    type === "error" ? "#a00000" :
+    type === "success" ? "#176b2c" : "#234";
+
+  box.setAttribute("role", "status");
 }
 
 function requireClient() {
   if (!supabase) {
-    showMessage("Backend अभी configure नहीं है। Supabase सेटिंग जाँचें।", "error");
+    showMessage(
+      "Supabase कनेक्शन नहीं मिला। कृपया Supabase सेटिंग जाँचें।",
+      "error"
+    );
     return false;
   }
   return true;
@@ -40,54 +55,73 @@ function getValue(...selectors) {
 }
 
 function getEmail() {
-  return getValue("#email", "#register-email", "#login-email", 'input[name="email"]');
-}
-
-function getPassword() {
-  return getValue("#password", "#register-password", "#login-password", 'input[name="password"]');
+  return getValue(
+    "#register-email",
+    "#login-email",
+    "#email",
+    'input[name="email"]'
+  );
 }
 
 function getFullName() {
-  return getValue("#name", "#full-name", "#register-name", 'input[name="name"]');
+  return getValue(
+    "#full-name",
+    "#name",
+    "#register-name",
+    'input[name="fullName"]'
+  );
 }
 
-async function sendOtp(email, fullName = "") {
-  if (!requireClient()) return;
+async function sendOtp(email, fullName = "", isRegistration = false) {
+  if (!requireClient()) return false;
 
-  if (!email || !email.includes("@")) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     showMessage("कृपया सही Email Address दर्ज करें।", "error");
-    return;
+    return false;
   }
 
   try {
+    showMessage("OTP भेजा जा रहा है, कृपया प्रतीक्षा करें...");
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        shouldCreateUser: true,
-        data: {
-          full_name: fullName
-        }
+        shouldCreateUser: isRegistration,
+        data: isRegistration ? { full_name: fullName } : undefined
       }
     });
 
     if (error) throw error;
 
-    showMessage("आपके Email पर OTP / Login Link भेजा गया है। अपना Email जाँचें।", "success");
+    showMessage(
+      "ईमेल भेजने का अनुरोध सफल हुआ। अपना Inbox और Spam फोल्डर जाँचें।",
+      "success"
+    );
+
+    return true;
+
   } catch (error) {
-    showMessage(error.message || "OTP भेजने में समस्या हुई।", "error");
+    console.error("OTP sending error:", error);
+    showMessage(
+      error.message || "OTP भेजने में समस्या हुई।",
+      "error"
+    );
+    return false;
   }
 }
 
 async function verifyOtp(email, token) {
-  if (!requireClient()) return;
+  if (!requireClient()) return false;
 
   if (!email || !token) {
     showMessage("Email और OTP दोनों दर्ज करें।", "error");
-    return;
+    return false;
   }
 
   try {
-    const { error } = await supabase.auth.verifyOtp({
+    showMessage("OTP सत्यापित किया जा रहा है...");
+
+    const { data, error } = await supabase.auth.verifyOtp({
       email,
       token,
       type: "email"
@@ -95,10 +129,22 @@ async function verifyOtp(email, token) {
 
     if (error) throw error;
 
-    showMessage("Login सफल हुआ।", "success");
+    if (!data.user) {
+      throw new Error("User की जानकारी प्राप्त नहीं हुई।");
+    }
+
+    showMessage("सफलतापूर्वक सत्यापन हो गया।", "success");
+
     window.location.href = "author-dashboard.html";
+    return true;
+
   } catch (error) {
-    showMessage(error.message || "OTP सत्यापित नहीं हुआ।", "error");
+    console.error("OTP verification error:", error);
+    showMessage(
+      error.message || "OTP गलत है या उसकी समय-सीमा समाप्त हो गई है।",
+      "error"
+    );
+    return false;
   }
 }
 
@@ -107,22 +153,22 @@ async function registerUser() {
   const email = getEmail();
 
   if (!name) {
-    showMessage("कृपया अपना नाम दर्ज करें।", "error");
-    return;
+    showMessage("कृपया अपना पूरा नाम दर्ज करें।", "error");
+    return false;
   }
 
-  await sendOtp(email, name);
+  return await sendOtp(email, name, true);
 }
 
 async function loginUser() {
   const email = getEmail();
 
   if (!email) {
-    showMessage("कृपया Email दर्ज करें।", "error");
-    return;
+    showMessage("कृपया अपना Email दर्ज करें।", "error");
+    return false;
   }
 
-  await sendOtp(email);
+  return await sendOtp(email, "", false);
 }
 
 async function logoutUser() {
@@ -141,8 +187,10 @@ async function logoutUser() {
 async function getCurrentProfile() {
   if (!supabase) return null;
 
-  const { data: { user }, error: userError } =
-    await supabase.auth.getUser();
+  const {
+    data: { user },
+    error: userError
+  } = await supabase.auth.getUser();
 
   if (userError || !user) return null;
 
@@ -163,7 +211,9 @@ async function getCurrentProfile() {
 async function protectRole(allowedRoles = []) {
   if (!requireClient()) return false;
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
 
   if (!user) {
     window.location.href = "login.html";
@@ -182,23 +232,88 @@ async function protectRole(allowedRoles = []) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  $("#register-form")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    await registerUser();
-  });
 
-  $("#login-form")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    await loginUser();
-  });
+  // Registration
+  const registerForm = $("#register-form");
 
-  $("#verify-otp-form")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
+      const button = registerForm.querySelector(
+        'button[type="submit"]'
+      );
+
+      if (button) button.disabled = true;
+
+      const success = await registerUser();
+
+      if (success) {
+        const otpSection = $("#register-otp-section");
+
+        if (otpSection) {
+          otpSection.style.display = "block";
+        }
+
+        const otpInput = $("#register-otp");
+        if (otpInput) otpInput.focus();
+      }
+
+      if (button) button.disabled = false;
+    });
+  }
+
+  // Registration OTP verification
+  $("#register-verify-button")?.addEventListener("click", async () => {
     const email = getEmail();
-    const token = getValue("#otp", "#email-otp", 'input[name="token"]');
+    const token = getValue("#register-otp");
+
+    const button = $("#register-verify-button");
+    if (button) button.disabled = true;
 
     await verifyOtp(email, token);
+
+    if (button) button.disabled = false;
+  });
+
+  // Login OTP request
+  const loginForm = $("#login-form");
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const button = loginForm.querySelector(
+        'button[type="submit"]'
+      );
+
+      if (button) button.disabled = true;
+
+      const success = await loginUser();
+
+      if (success) {
+        const otpSection = $("#otp-section");
+
+        if (otpSection) {
+          otpSection.style.display = "block";
+        }
+      }
+
+      if (button) button.disabled = false;
+    });
+  }
+
+  // Login OTP verification
+  $("#verify-otp-button")?.addEventListener("click", async () => {
+    const email = getEmail();
+    const token = getValue("#login-otp", "#otp", "#email-otp");
+
+    const button = $("#verify-otp-button");
+    if (button) button.disabled = true;
+
+    await verifyOtp(email, token);
+
+    if (button) button.disabled = false;
   });
 
   $("#logout-btn")?.addEventListener("click", logoutUser);
@@ -206,6 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-auth='logout']").forEach((button) => {
     button.addEventListener("click", logoutUser);
   });
+
 });
 
 export {
