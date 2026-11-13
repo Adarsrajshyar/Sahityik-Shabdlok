@@ -1,161 +1,244 @@
+import { requireSupabase } from "./supabase-client.js";
 
-/*
-  साहित्यिक शब्द लोक - Author Dashboard
-  Author profile and submission history.
-*/
+"use strict";
 
-import { supabase } from "./supabase-client.js";
+const supabase = requireSupabase();
 
-function escapeHTML(value = "") {
-  return String(value).replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[char]);
-}
+const $ = (id) => document.getElementById(id);
+
+const statusLabels = {
+  pending: "लंबित",
+  under_review: "समीक्षा में",
+  revision_requested: "सुधार आवश्यक",
+  approved: "स्वीकृत",
+  published: "प्रकाशित",
+  rejected: "अस्वीकृत"
+};
 
 function showDashboardMessage(message) {
-  const box = document.querySelector("#dashboard-message");
-  if (box) box.textContent = message;
+  const element = $("dashboard-message");
+  if (element) element.textContent = message;
 }
 
-async function getUserAndProfile() {
-  if (!supabase) {
-    showDashboardMessage("Backend configure नहीं है।");
-    return null;
-  }
-
-  const { data: { user }, error } = await supabase.auth.getUser();
-
-  if (error || !user) {
-    window.location.href = "login.html";
-    return null;
-  }
-
-  const { data: profile, error: profileError } = await supabase
-    .from("profiles")
-    .select("id, full_name, email, role, created_at")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  if (profileError) {
-    console.error(profileError);
-    showDashboardMessage("Profile लोड नहीं हो सका।");
-    return null;
-  }
-
-  return { user, profile };
+function safeText(value) {
+  return value == null ? "—" : String(value);
 }
 
-async function loadAuthorProfile() {
-  const result = await getUserAndProfile();
-  if (!result) return;
+function createCell(value) {
+  const td = document.createElement("td");
+  td.textContent = safeText(value);
+  return td;
+}
 
-  const { user, profile } = result;
+function formatDate(value) {
+  if (!value) return "—";
 
-  const nameElement = document.querySelector("#author-name");
-  const emailElement = document.querySelector("#author-email");
-  const roleElement = document.querySelector("#author-role");
+  const date = new Date(value);
 
-  if (nameElement) {
-    nameElement.textContent = profile?.full_name || user.email;
+  if (Number.isNaN(date.getTime())) return "—";
+
+  return date.toLocaleDateString("hi-IN");
+}
+
+async function loadDashboard() {
+
+  const { data: sessionData, error: sessionError } =
+    await supabase.auth.getSession();
+
+  if (sessionError) throw sessionError;
+
+  const user = sessionData.session?.user;
+
+  if (!user) {
+    window.location.replace("login.html");
+    return;
   }
 
-  if (emailElement) {
-    emailElement.textContent = profile?.email || user.email;
+  const { data: profile, error: profileError } =
+    await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", user.id)
+      .maybeSingle();
+
+  if (profileError) throw profileError;
+
+  if (!profile) {
+    showDashboardMessage(
+      "आपकी प्रोफाइल अभी उपलब्ध नहीं है। Admin से संपर्क करें।"
+    );
+    return;
   }
 
-  if (roleElement) {
-    roleElement.textContent = profile?.role || "author";
+  const role = profile.role || "reader";
+  const currentPage = window.location.pathname.split("/").pop();
+
+  if (
+    currentPage === "author-dashboard.html" &&
+    role !== "author"
+  ) {
+    showDashboardMessage(
+      "यह पृष्ठ केवल Author अकाउंट के लिए उपलब्ध है।"
+    );
+    return;
   }
 
-  await loadAuthorSubmissions(user.id);
-  await loadAuthorCertificates(user.id);
+  if (
+    currentPage === "dashboard.html" &&
+    role !== "reader"
+  ) {
+    const routes = {
+      author: "author-dashboard.html",
+      publisher: "publisher.html",
+      admin: "admin.html"
+    };
+
+    if (routes[role]) {
+      window.location.replace(routes[role]);
+      return;
+    }
+  }
+
+  const name =
+    profile.display_name ||
+    profile.full_name ||
+    user.user_metadata?.display_name ||
+    user.user_metadata?.full_name ||
+    "पाठक";
+
+  if ($("reader-name")) $("reader-name").textContent = name;
+  if ($("author-name")) $("author-name").textContent = name;
+
+  if ($("profile-name")) {
+    $("profile-name").textContent =
+      profile.full_name || name;
+  }
+
+  if ($("profile-email")) {
+    $("profile-email").textContent = user.email || "—";
+  }
+
+  if ($("profile-role")) {
+    $("profile-role").textContent = role;
+  }
+
+  if ($("profile-display-name")) {
+    $("profile-display-name").textContent =
+      profile.display_name || "—";
+  }
+
+  if (role === "author") {
+    await loadAuthorSubmissions(user.id);
+  }
+
 }
 
 async function loadAuthorSubmissions(userId) {
-  const container = document.querySelector("#author-submissions");
-  if (!container || !supabase) return;
 
-  const { data, error } = await supabase
-    .from("submissions")
-    .select("id, title, category, status, created_at")
+  const tbody = $("author-submissions");
+
+  if (!tbody) return;
+
+  const { data: writings, error } = await supabase
+    .from("writings")
+    .select("id,title,category,status,created_at")
     .eq("author_id", userId)
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error(error);
-    container.textContent = "रचनाओं की सूची लोड नहीं हो सकी।";
+    console.error("Submissions error:", error);
+    tbody.innerHTML = "";
+    const row = document.createElement("tr");
+    const cell = createCell("रचनाएँ लोड नहीं हो सकीं।");
+    cell.colSpan = 4;
+    row.appendChild(cell);
+    tbody.appendChild(row);
     return;
   }
 
-  if (!data?.length) {
-    container.textContent = "आपने अभी कोई रचना जमा नहीं की है।";
+  const items = writings || [];
+
+  const total = $("total-submissions");
+  const pending = $("pending-submissions");
+  const published = $("published-submissions");
+
+  if (total) total.textContent = items.length;
+
+  if (pending) {
+    pending.textContent = items.filter(item =>
+      ["pending", "under_review", "revision_requested"]
+        .includes(item.status)
+    ).length;
+  }
+
+  if (published) {
+    published.textContent = items.filter(item =>
+      item.status === "published"
+    ).length;
+  }
+
+  tbody.replaceChildren();
+
+  if (items.length === 0) {
+    const row = document.createElement("tr");
+    const cell = createCell("अभी तक कोई रचना प्रस्तुत नहीं की गई है।");
+    cell.colSpan = 4;
+    row.appendChild(cell);
+    tbody.appendChild(row);
     return;
   }
 
-  container.innerHTML = data.map((item) => `
-    <article class="content-card">
-      <h3>${escapeHTML(item.title)}</h3>
-      <p>श्रेणी: ${escapeHTML(item.category)}</p>
-      <p>स्थिति: ${escapeHTML(item.status)}</p>
-      <small>${new Date(item.created_at).toLocaleDateString("hi-IN")}</small>
-    </article>
-  `).join("");
+  items.forEach(item => {
+
+    const row = document.createElement("tr");
+
+    row.appendChild(createCell(item.title));
+    row.appendChild(createCell(item.category));
+    row.appendChild(
+      createCell(statusLabels[item.status] || item.status)
+    );
+    row.appendChild(createCell(formatDate(item.created_at)));
+
+    tbody.appendChild(row);
+
+  });
+
 }
 
-async function loadAuthorCertificates(userId) {
-  const container = document.querySelector("#author-certificates");
-  if (!container || !supabase) return;
+async function logout() {
 
-  const { data, error } = await supabase
-    .from("certificates")
-    .select("id, certificate_code, title, issued_at")
-    .eq("author_id", userId)
-    .order("issued_at", { ascending: false });
+  const button = $("logout-button");
 
-  if (error) {
-    console.error(error);
-    container.textContent = "प्रमाणपत्रों की सूची लोड नहीं हो सकी।";
-    return;
+  if (button) button.disabled = true;
+
+  try {
+
+    const { error } = await supabase.auth.signOut();
+
+    if (error) throw error;
+
+    window.location.replace("login.html");
+
+  } catch (error) {
+
+    console.error("Logout error:", error);
+    showDashboardMessage("Logout नहीं हो सका। पुनः प्रयास करें।");
+
+    if (button) button.disabled = false;
+
   }
 
-  if (!data?.length) {
-    container.textContent = "अभी कोई प्रमाणपत्र जारी नहीं हुआ है।";
-    return;
-  }
-
-  container.innerHTML = data.map((certificate) => `
-    <article class="content-card">
-      <h3>${escapeHTML(certificate.title || "ARS Publication Certificate")}</h3>
-      <p>Certificate ID: ${escapeHTML(certificate.certificate_code)}</p>
-      <p>जारी तिथि: ${
-        certificate.issued_at
-          ? new Date(certificate.issued_at).toLocaleDateString("hi-IN")
-          : "उपलब्ध नहीं"
-      }</p>
-      <a href="certificate.html?id=${encodeURIComponent(certificate.id)}">
-        प्रमाणपत्र देखें
-      </a>
-    </article>
-  `).join("");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (
-    document.querySelector("#author-name") ||
-    document.querySelector("#author-submissions") ||
-    document.querySelector("#author-certificates")
-  ) {
-    loadAuthorProfile();
-  }
+const logoutButton = $("logout-button");
+
+if (logoutButton) {
+  logoutButton.addEventListener("click", logout);
+}
+
+loadDashboard().catch(error => {
+  console.error("Dashboard error:", error);
+  showDashboardMessage(
+    "Dashboard लोड नहीं हुआ। कृपया पेज Refresh करें।"
+  );
 });
-
-export {
-  getUserAndProfile,
-  loadAuthorProfile,
-  loadAuthorSubmissions,
-  loadAuthorCertificates
-};
