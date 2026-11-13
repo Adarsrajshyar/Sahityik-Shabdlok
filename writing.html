@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक पर प्रकाशित रचना पढ़ें।">
+  <title>रचना पढ़ें | साहित्यिक शब्द लोक</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .reading-area {
+      max-width: 850px;
+      min-height: 420px;
+      margin: 45px auto;
+      padding: 30px;
+      background: #fffdf6;
+      border: 1px solid #e7dfcf;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(31, 51, 38, 0.06);
+    }
+    .reading-area h1 {
+      color: #174b35;
+      font-size: clamp(26px, 4vw, 38px);
+      margin-bottom: 12px;
+    }
+    .reading-meta {
+      color: #777;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e7dfcf;
+      margin-bottom: 25px;
+    }
+    .reading-body {
+      font-size: 18px;
+      line-height: 2.1;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #174b35;
+      font-weight: 600;
+    }
+    #writing-message {
+      color: #686e67;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="container">
+    <article class="reading-area" id="writing-detail">
+      <div id="writing-message" role="status" aria-live="polite">
+        रचना लोड हो रही है...
+      </div>
+
+      <div id="writing-content" hidden>
+        <h1 id="writing-title"></h1>
+        <div class="reading-meta" id="writing-meta"></div>
+        <div class="reading-body" id="writing-body"></div>
+      </div>
+
+      <a href="search.html" class="back-link">← सभी रचनाएँ देखें</a>
+    </article>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="search.js"></script>
+</body>
+</html>
