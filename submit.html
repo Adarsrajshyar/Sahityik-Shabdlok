@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -6,45 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="साहित्यिक शब्द लोक पर अपनी मौलिक रचना जमा करें।">
   <title>रचना भेजें | साहित्यिक शब्द लोक</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .submit-wrap{max-width:760px;margin:35px auto;padding:20px}
-    .submit-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:18px;padding:28px;box-shadow:0 8px 25px #263d2510}
-    .submit-card h1{color:#315b38;margin-top:0}
-    .submit-intro{color:#777;line-height:1.8}
-    .form-field{margin:18px 0}
-    .form-field label{display:block;color:#315b38;font-weight:600;margin-bottom:7px}
-    .form-field input,.form-field select,.form-field textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d9d5c8;border-radius:8px;font:inherit;background:white}
-    .form-field textarea{min-height:220px;resize:vertical;line-height:1.8}
-    .submit-button{background:#315b38;color:white;border:0;border-radius:8px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer}
-    .submit-note{background:#f0f4e9;padding:14px;border-radius:9px;color:#52634d;line-height:1.7;margin:18px 0}
-    #submission-message{display:none;margin-top:16px;padding:12px;border-radius:8px}
+    .submit-wrap {
+      max-width: 780px;
+      margin: 35px auto;
+      padding: 20px;
+    }
+
+    .submit-card {
+      background: #fffdf6;
+      border: 1px solid #e5dfcc;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 25px rgba(38, 61, 37, 0.08);
+    }
+
+    .submit-card h1 {
+      color: #174b35;
+      margin-bottom: 8px;
+    }
+
+    .submit-intro {
+      color: #6f756e;
+      line-height: 1.8;
+    }
+
+    .submit-note {
+      background: #eef3e9;
+      padding: 14px;
+      border-radius: 9px;
+      color: #405b43;
+      line-height: 1.8;
+      margin: 20px 0;
+    }
+
+    .form-field {
+      margin: 18px 0;
+    }
+
+    .form-field label {
+      display: block;
+      color: #174b35;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #d9d5c8;
+      border-radius: 8px;
+      font: inherit;
+      background: #fff;
+      color: #292d29;
+    }
+
+    .form-field textarea {
+      min-height: 240px;
+      resize: vertical;
+      line-height: 1.9;
+    }
+
+    .submit-button {
+      background: #174b35;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 22px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .submit-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #submission-message {
+      display: none;
+      margin-top: 16px;
+      padding: 13px;
+      border-radius: 8px;
+      line-height: 1.7;
+    }
+
+    #submission-message[data-type="success"] {
+      display: block;
+      background: #eaf5eb;
+      color: #176b3a;
+    }
+
+    #submission-message[data-type="error"] {
+      display: block;
+      background: #fff0ed;
+      color: #a52a20;
+    }
+
+    .originality-check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .originality-check input {
+      margin-top: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .submit-card {
+        padding: 19px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div id="site-header"></div>
 
   <main class="submit-wrap">
     <section class="submit-card">
       <h1>अपनी रचना भेजें</h1>
-      <p class="submit-intro">अपनी मौलिक शायरी, कविता या कहानी साहित्यिक शब्द लोक के साथ साझा करें।</p>
+
+      <p class="submit-intro">
+        अपनी मौलिक शायरी, कविता या कहानी साहित्यिक शब्द लोक के साथ साझा करें।
+      </p>
 
       <div class="submit-note">
-        <strong>ध्यान दें:</strong> रचना जमा करने के बाद उसकी समीक्षा की जाएगी। प्रकाशित होने की पुष्टि मिलने के बाद ही वह वेबसाइट पर दिखाई देगी। केवल प्रकाशित रचनाओं के लिए प्रकाशन प्रमाणपत्र जारी किया जा सकता है।
+        <strong>महत्वपूर्ण सूचना:</strong>
+        आपकी रचना पहले समीक्षा के लिए भेजी जाएगी।
+        स्वीकृति और प्रकाशन के बाद ही वह सार्वजनिक वेबसाइट पर दिखाई देगी।
       </div>
 
       <form id="submission-form">
+
         <div class="form-field">
-          <label for="work-title">रचना का शीर्षक</label>
-          <input type="text" id="work-title" name="title" maxlength="150" required placeholder="अपनी रचना का शीर्षक लिखें">
+          <label for="work-title">रचना का शीर्षक *</label>
+          <input
+            type="text"
+            id="work-title"
+            maxlength="150"
+            required
+            placeholder="अपनी रचना का शीर्षक लिखें">
         </div>
 
         <div class="form-field">
-          <label for="work-type">रचना का प्रकार</label>
-          <select id="work-type" name="type" required>
-            <option value="">चुनें</option>
+          <label for="work-type">रचना का प्रकार *</label>
+          <select id="work-type" required>
+            <option value="">रचना का प्रकार चुनें</option>
             <option value="shayari">शायरी</option>
             <option value="poetry">कविता</option>
             <option value="story">कहानी</option>
@@ -52,30 +170,45 @@
         </div>
 
         <div class="form-field">
-          <label for="work-category">श्रेणी</label>
-          <select id="work-category" name="category" required>
+          <label for="work-category">रचना की श्रेणी *</label>
+          <select id="work-category" required disabled>
             <option value="">पहले रचना का प्रकार चुनें</option>
           </select>
         </div>
 
         <div class="form-field">
-          <label for="work-content">अपनी पूरी रचना लिखें</label>
-          <textarea id="work-content" name="content" required minlength="20" maxlength="20000" placeholder="यहाँ अपनी मौलिक रचना लिखें..."></textarea>
+          <label for="work-content">अपनी पूरी रचना लिखें *</label>
+          <textarea
+            id="work-content"
+            minlength="20"
+            maxlength="20000"
+            required
+            placeholder="यहाँ अपनी मौलिक रचना लिखें..."></textarea>
         </div>
 
         <div class="form-field">
           <label for="pen-name">लेखकीय नाम</label>
-          <input type="text" id="pen-name" name="penName" maxlength="80" placeholder="यदि अलग हो">
+          <input
+            type="text"
+            id="pen-name"
+            maxlength="80"
+            placeholder="यदि आप अलग नाम से लिखते हैं">
         </div>
 
-        <label style="display:flex;gap:9px;align-items:flex-start;color:#666;line-height:1.6">
-          <input type="checkbox" id="original-work" required style="margin-top:5px">
-          <span>मैं पुष्टि करता/करती हूँ कि यह मेरी मौलिक रचना है और इसे प्रकाशित करने का अधिकार मेरे पास है।</span>
+        <label class="originality-check">
+          <input type="checkbox" id="original-work" required>
+          <span>
+            मैं पुष्टि करता/करती हूँ कि यह मेरी मौलिक रचना है
+            और इसे प्रकाशित करने का अधिकार मेरे पास है।
+          </span>
         </label>
 
-        <p style="margin-top:20px">
-          <button type="submit" class="submit-button">रचना समीक्षा के लिए भेजें</button>
+        <p style="margin-top:22px">
+          <button type="submit" id="submit-writing-button" class="submit-button">
+            रचना समीक्षा के लिए भेजें
+          </button>
         </p>
+
         <div id="submission-message" role="status" aria-live="polite"></div>
       </form>
     </section>
@@ -85,5 +218,6 @@
 
   <script type="module" src="app.js"></script>
   <script type="module" src="content.js"></script>
+  <script type="module" src="submit.js"></script>
 </body>
 </html>
