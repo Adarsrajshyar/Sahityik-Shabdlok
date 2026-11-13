@@ -1,9 +1,6 @@
 /*
   साहित्यिक शब्द लोक
   Public Authors Directory
-
-  Authors are identified from published submissions.
-  This does not expose private profile information.
 */
 
 import { supabase } from "./supabase-client.js";
@@ -62,13 +59,16 @@ function renderAuthors() {
 
   if (!filtered.length) {
     authorsList.innerHTML = "";
-    showMessage("इस नाम से कोई प्रकाशित लेखक नहीं मिला।");
+    showMessage("कोई लेखक नहीं मिला।");
     return;
   }
 
   showMessage(`कुल ${filtered.length} लेखक मिले।`);
 
   authorsList.innerHTML = filtered.map((author) => {
+    const profileUrl =
+      `author.html?name=${encodeURIComponent(author.name)}`;
+
     const workLinks = author.works.slice(0, 5).map((work) => `
       <li>
         <a href="writing.html?id=${encodeURIComponent(work.id)}">
@@ -81,7 +81,11 @@ function renderAuthors() {
 
     return `
       <article class="author-card">
-        <h2>${escapeHTML(author.name)}</h2>
+        <h2>
+          <a href="${profileUrl}">
+            ${escapeHTML(author.name)}
+          </a>
+        </h2>
 
         <p class="author-count">
           प्रकाशित रचनाएँ: ${author.works.length}
@@ -98,6 +102,12 @@ function renderAuthors() {
             ? `<p>और ${remaining} रचनाएँ...</p>`
             : ""
         }
+
+        <p>
+          <a href="${profileUrl}">
+            लेखक प्रोफ़ाइल देखें →
+          </a>
+        </p>
       </article>
     `;
   }).join("");
@@ -111,7 +121,7 @@ async function loadAuthors() {
     return;
   }
 
-  showMessage("प्रकाशित लेखकों की सूची लोड हो रही है...");
+  showMessage("लेखक सूची लोड हो रही है...");
 
   const { data, error } = await supabase
     .from("submissions")
