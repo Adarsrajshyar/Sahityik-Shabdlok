@@ -1,70 +1,256 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="साहित्यिक शब्द लोक में सुरक्षित ईमेल OTP लॉगिन करें।">
-  <title>लॉगिन | साहित्यिक शब्द लोक</title>
+  <meta name="theme-color" content="#174b35">
+
+  <title>लॉगिन | साहित्यिक शब्द लोक - ARS</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Hind:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .auth-wrap{max-width:500px;margin:45px auto;padding:20px}
-    .auth-card{background:#fffdf6;border:1px solid #e4ddc9;border-radius:18px;padding:30px;box-shadow:0 8px 25px #263d2510}
-    .auth-card h1{text-align:center;color:#315b38;margin-top:0}
-    .auth-intro{text-align:center;color:#777;line-height:1.7;margin-bottom:25px}
-    .auth-field{margin:18px 0}
-    .auth-field label{display:block;font-weight:600;color:#315b38;margin-bottom:7px}
-    .auth-field input{width:100%;box-sizing:border-box;padding:13px;border:1px solid #d9d5c8;border-radius:8px;background:white;font:inherit}
-    .auth-submit{width:100%;border:0;border-radius:8px;padding:13px;background:#315b38;color:white;font:inherit;font-weight:600;cursor:pointer;margin-top:12px}
-    .auth-note{text-align:center;font-size:14px;color:#777;line-height:1.7;margin-top:20px}
-    .auth-links{text-align:center;margin-top:20px}
-    .auth-links a{color:#315b38;font-weight:600}
-    #login-message{margin-top:15px;padding:12px;border-radius:8px;display:none}
-    #otp-section{display:none}
+    .auth-page {
+      min-height: 85vh;
+      display: grid;
+      place-items: center;
+      padding: 55px 15px;
+      background: var(--cream);
+    }
+
+    .auth-card {
+      width: min(460px, 100%);
+      padding: 38px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .auth-logo {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .auth-logo .brand-mark {
+      margin: 0 auto 12px;
+    }
+
+    .auth-logo h1 {
+      color: var(--green);
+      font-family: "Noto Serif Devanagari", serif;
+      font-size: 25px;
+    }
+
+    .auth-logo p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .auth-card h2 {
+      color: var(--green);
+      font-family: "Noto Serif Devanagari", serif;
+      font-size: 22px;
+      margin-bottom: 7px;
+    }
+
+    .auth-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .auth-form label {
+      display: block;
+      margin: 14px 0 6px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .auth-form input {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      outline: none;
+      font: inherit;
+    }
+
+    .auth-form input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(177, 138, 72, .12);
+    }
+
+    .auth-submit {
+      width: 100%;
+      margin-top: 20px;
+      border: 0;
+    }
+
+    .auth-message {
+      display: none;
+      margin-top: 16px;
+      padding: 11px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .auth-message.show {
+      display: block;
+    }
+
+    .auth-message.error {
+      background: #fff0ed;
+      color: #a52b1b;
+    }
+
+    .auth-message.success {
+      background: #eaf5ed;
+      color: #17653a;
+    }
+
+    .auth-links {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .auth-links a {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .otp-section {
+      display: none;
+    }
+
+    .otp-section.visible {
+      display: block;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      .auth-card {
+        padding: 26px 20px;
+      }
+    }
   </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script type="module" src="auth.js"></script>
 </head>
+
 <body>
-  <div id="site-header"></div>
 
-  <main class="auth-wrap">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">ARS</span>
+        <span class="brand-text">
+          <strong>साहित्यिक शब्द लोक</strong>
+          <small>शब्दों से संवेदना तक…</small>
+        </span>
+      </a>
+      <a href="register.html" class="btn btn-primary">पंजीकरण करें</a>
+    </div>
+  </header>
+
+  <main class="auth-page">
     <section class="auth-card">
-      <h1>स्वागत है!</h1>
-      <p class="auth-intro">अपने साहित्यिक शब्द लोक अकाउंट में लॉगिन करें।</p>
 
-      <form id="login-form">
-        <div class="auth-field">
-          <label for="login-email">रजिस्टर्ड ईमेल पता</label>
-          <input type="email" id="login-email" name="email" placeholder="example@email.com" required>
-        </div>
+      <div class="auth-logo">
+        <span class="brand-mark">ARS</span>
+        <h1>साहित्यिक शब्द लोक</h1>
+        <p>शब्दों से संवेदना तक…</p>
+      </div>
 
-        <button type="submit" class="auth-submit" id="send-otp-button">ईमेल OTP भेजें</button>
-
-        <div id="otp-section">
-          <div class="auth-field">
-            <label for="login-otp">ईमेल पर प्राप्त OTP</label>
-            <input type="text" id="login-otp" name="otp" placeholder="OTP दर्ज करें" inputmode="numeric" autocomplete="one-time-code" maxlength="8">
-          </div>
-          <button type="button" class="auth-submit" id="verify-otp-button">OTP सत्यापित करें और लॉगिन करें</button>
-        </div>
-
-        <div id="login-message" role="status" aria-live="polite"></div>
-      </form>
-
-      <p class="auth-note">
-        लॉगिन के लिए आपके रजिस्टर्ड ईमेल पर OTP भेजा जाएगा। अपना OTP किसी अन्य व्यक्ति के साथ साझा न करें।
+      <h2>अपने खाते में लॉगिन करें</h2>
+      <p class="auth-description">
+        अपने पंजीकृत ईमेल पर OTP प्राप्त करें।
       </p>
 
+      <form id="login-form" class="auth-form">
+
+        <div id="login-email-section">
+          <label for="login-email">ईमेल पता</label>
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            placeholder="अपना ईमेल लिखें"
+            autocomplete="email"
+            required
+          >
+
+          <button type="submit"
+                  id="send-otp-button"
+                  class="btn btn-primary auth-submit">
+            OTP भेजें
+          </button>
+        </div>
+
+        <div id="login-otp-section" class="otp-section">
+
+          <label for="login-otp">ईमेल पर प्राप्त OTP</label>
+          <input
+            type="text"
+            id="login-otp"
+            name="otp"
+            placeholder="6 अंकों का OTP"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            maxlength="6"
+            pattern="[0-9]{6}"
+          >
+
+          <button type="button"
+                  id="verify-otp-button"
+                  class="btn btn-primary auth-submit">
+            OTP सत्यापित करें और लॉगिन करें
+          </button>
+
+          <button type="button"
+                  id="resend-login-otp"
+                  class="btn btn-outline auth-submit">
+            OTP दोबारा भेजें
+          </button>
+
+        </div>
+
+        <div id="login-message"
+             class="auth-message"
+             role="status"
+             aria-live="polite"></div>
+
+      </form>
+
       <div class="auth-links">
-        नया अकाउंट बनाना चाहते हैं? <a href="register.html">रजिस्ट्रेशन करें</a>
+        नया खाता बनाना चाहते हैं?
+        <a href="register.html">पंजीकरण करें</a>
       </div>
+
+      <a href="index.html" class="back-home">
+        ← मुख्य पृष्ठ पर वापस जाएँ
+      </a>
+
     </section>
   </main>
 
-  <div id="site-footer"></div>
-
-  <script type="module" src="app.js"></script>
-  <script type="module" src="auth.js"></script>
 </body>
 </html>
