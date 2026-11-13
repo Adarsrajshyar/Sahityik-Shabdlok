@@ -1,94 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="साहित्यिक शब्द लोक Admin Management Panel।">
   <title>Admin Panel | साहित्यिक शब्द लोक</title>
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
   <style>
     .admin-wrap{max-width:1150px;margin:30px auto;padding:20px}
-    .admin-heading{color:#315b38}
-    .admin-subtitle{color:#777;line-height:1.7}
+    .admin-wrap h1,.admin-panel h2{color:#174b35}
+    .admin-subtitle{color:#777;line-height:1.8}
     .admin-warning{padding:14px;background:#fff3df;border:1px solid #ead5aa;border-radius:9px;color:#76551e;line-height:1.7;margin:20px 0}
-    .admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px;margin:25px 0}
+    .admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin:25px 0}
     .admin-stat,.admin-panel{background:#fffdf6;border:1px solid #e5dfcc;border-radius:13px;padding:20px}
     .admin-stat span{color:#777}
-    .admin-stat strong{display:block;font-size:27px;color:#315b38}
+    .admin-stat strong{display:block;font-size:28px;color:#174b35}
     .admin-panel{margin:20px 0}
-    .admin-panel h2{color:#315b38;margin-top:0}
-    .admin-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .admin-actions a,.admin-actions button{display:inline-block;padding:10px 16px;background:#315b38;color:white;border:0;border-radius:8px;text-decoration:none;font:inherit;cursor:pointer}
-    .admin-actions .light{background:#e9eddf;color:#315b38}
-    .admin-list{color:#777;line-height:1.8;background:#f7f5ed;padding:15px;border-radius:9px}
+    .admin-list{padding:15px;background:#f7f5ed;border-radius:9px;line-height:1.8}
+    .admin-item{background:white;border:1px solid #e5dfcc;border-radius:10px;padding:16px;margin:12px 0}
+    .admin-item h3{color:#174b35;margin-top:0}
+    .admin-item p{white-space:pre-wrap;overflow-wrap:anywhere}
+    .admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .admin-actions button,.admin-actions a{padding:10px 15px;background:#174b35;color:white;border:0;border-radius:7px;text-decoration:none;font:inherit;cursor:pointer}
+    .admin-actions .secondary{background:#e9eddf;color:#174b35}
     .admin-setting{margin:14px 0}
-    .admin-setting label{display:block;color:#315b38;font-weight:600;margin-bottom:6px}
+    .admin-setting label{display:block;color:#174b35;font-weight:600;margin-bottom:6px}
     .admin-setting input,.admin-setting textarea{width:100%;box-sizing:border-box;padding:11px;border:1px solid #d9d5c8;border-radius:8px;font:inherit}
-    #admin-status{margin-top:12px;color:#315b38}
+    .admin-setting textarea{resize:vertical}
+    .admin-message{margin:12px 0;padding:10px;border-radius:8px}
+    .admin-message[data-type="error"]{background:#fff0ed;color:#a52a20}
+    .admin-message[data-type="success"]{background:#eaf5eb;color:#176b3a}
+    .admin-item select{padding:8px;border:1px solid #ccc;border-radius:6px}
+    button:disabled{opacity:.55;cursor:not-allowed}
   </style>
 </head>
+
 <body>
   <div id="site-header"></div>
 
   <main class="admin-wrap">
-    <h1 class="admin-heading">ARS Admin Panel</h1>
-    <p class="admin-subtitle">साहित्यिक शब्द लोक की वेबसाइट, लेखक समुदाय, सामग्री और प्रकाशन व्यवस्था का प्रबंधन।</p>
+    <h1>ARS Admin Panel</h1>
+    <p class="admin-subtitle">
+      साहित्यिक शब्द लोक की रचनाओं, सदस्यों और वेबसाइट सेटिंग्स का प्रबंधन।
+    </p>
 
     <div id="admin-access-message" class="admin-warning" role="status" aria-live="polite">
-      Admin अनुमति की जाँच की जा रही है। केवल अधिकृत Admin ही इस पैनल का उपयोग कर सकता है।
+      Admin अनुमति की जाँच की जा रही है...
     </div>
 
     <div id="admin-content" hidden>
+      <div id="admin-message" class="admin-message" role="status" aria-live="polite"></div>
+
       <div class="admin-grid">
-        <div class="admin-stat"><span>कुल सदस्य</span><strong id="admin-users-count">—</strong></div>
-        <div class="admin-stat"><span>लेखक</span><strong id="admin-authors-count">—</strong></div>
-        <div class="admin-stat"><span>समीक्षा हेतु रचनाएँ</span><strong id="admin-pending-count">—</strong></div>
-        <div class="admin-stat"><span>प्रकाशित रचनाएँ</span><strong id="admin-published-count">—</strong></div>
+        <div class="admin-stat">
+          <span>कुल सदस्य</span>
+          <strong id="admin-users-count">—</strong>
+        </div>
+        <div class="admin-stat">
+          <span>लेखक</span>
+          <strong id="admin-authors-count">—</strong>
+        </div>
+        <div class="admin-stat">
+          <span>समीक्षा हेतु रचनाएँ</span>
+          <strong id="admin-pending-count">—</strong>
+        </div>
+        <div class="admin-stat">
+          <span>प्रकाशित रचनाएँ</span>
+          <strong id="admin-published-count">—</strong>
+        </div>
       </div>
 
       <section class="admin-panel">
         <h2>प्रबंधन विकल्प</h2>
         <div class="admin-actions">
           <a href="publisher.html">Publisher Panel</a>
-          <a href="author-dashboard.html" class="light">Author Dashboard</a>
-          <a href="certificate.html" class="light">प्रमाणपत्र</a>
-          <a href="verify.html" class="light">प्रमाणपत्र सत्यापन</a>
+          <a href="author-dashboard.html" class="secondary">Author Dashboard</a>
+          <a href="certificate.html" class="secondary">प्रमाणपत्र</a>
+          <a href="verify.html" class="secondary">प्रमाणपत्र सत्यापन</a>
         </div>
       </section>
 
       <section class="admin-panel">
-        <h2>रचनाओं का प्रबंधन</h2>
-        <div id="admin-submissions" class="admin-list">रचनाओं की सूची लोड हो रही है...</div>
+        <h2>रचनाओं की समीक्षा</h2>
+        <p class="admin-subtitle">
+          रचना पढ़ने के बाद ही प्रकाशित या अस्वीकार करें।
+        </p>
+        <div id="admin-submissions" class="admin-list">
+          रचनाएँ लोड हो रही हैं...
+        </div>
       </section>
 
       <section class="admin-panel">
         <h2>सदस्य और भूमिकाएँ</h2>
-        <div id="admin-members" class="admin-list">सदस्यों की जानकारी लोड हो रही है...</div>
+        <div id="admin-members" class="admin-list">
+          सदस्यों की जानकारी लोड हो रही है...
+        </div>
       </section>
 
       <section class="admin-panel">
         <h2>वेबसाइट सेटिंग्स</h2>
+
         <form id="admin-settings-form">
           <div class="admin-setting">
             <label for="setting-youtube">YouTube लिंक</label>
-            <input type="url" id="setting-youtube" placeholder="https://www.youtube.com/@Adarshshyari">
+            <input type="url" id="setting-youtube"
+              placeholder="https://www.youtube.com/@Adarshshyari">
           </div>
+
           <div class="admin-setting">
             <label for="setting-instagram">Instagram लिंक (वैकल्पिक)</label>
-            <input type="url" id="setting-instagram" placeholder="Instagram URL">
+            <input type="url" id="setting-instagram"
+              placeholder="Instagram URL">
           </div>
+
           <div class="admin-setting">
             <label for="setting-contact">संपर्क ईमेल</label>
-            <input type="email" id="setting-contact" placeholder="संपर्क ईमेल">
+            <input type="email" id="setting-contact"
+              placeholder="संपर्क ईमेल">
           </div>
+
           <div class="admin-setting">
             <label for="setting-book">ARS Book की जानकारी</label>
-            <textarea id="setting-book" rows="4" placeholder="ARS Book का परिचय या अपडेट"></textarea>
+            <textarea id="setting-book" rows="4"
+              placeholder="ARS Book का परिचय या अपडेट"></textarea>
           </div>
-          <button type="submit" style="padding:11px 18px;background:#315b38;color:white;border:0;border-radius:8px;font:inherit;cursor:pointer">सेटिंग्स सेव करें</button>
-          <div id="admin-status" role="status" aria-live="polite"></div>
+
+          <div class="admin-actions">
+            <button type="submit">सेटिंग्स सेव करें</button>
+          </div>
         </form>
       </section>
     </div>
