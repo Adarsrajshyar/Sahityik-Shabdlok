@@ -1,101 +1,100 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#173d32">
-  <title>हिंदी शायरी | साहित्यिक शब्द लोक – ARS</title>
-  <meta name="description" content="प्रेम, दर्द, भावनात्मक, प्रेरणादायक और दोस्ती की हिंदी शायरी पढ़ें।">
+  <meta name="description" content="साहित्यिक शब्द लोक पर पढ़ें प्रेम, दर्द, दोस्ती और प्रेरणा से भरी हिंदी शायरी।">
+  <title>शायरी | साहित्यिक शब्द लोक</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="app.js"></script>
-  <script type="module" src="content.js"></script>
+
+  <style>
+    .listing-hero {
+      padding: 65px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #103725, #245b40);
+    }
+    .listing-hero h1 {
+      font-size: clamp(30px, 5vw, 44px);
+      margin-bottom: 10px;
+    }
+    .listing-hero p {
+      color: #e5ce9d;
+    }
+    .listing-section {
+      min-height: 420px;
+      padding: 55px 0 75px;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+    .content-card {
+      padding: 25px;
+      background: #fff;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+      box-shadow: 0 8px 25px rgba(31, 51, 38, 0.07);
+    }
+    .content-card h3 {
+      color: #174b35;
+      margin-bottom: 13px;
+      font-size: 21px;
+    }
+    .content-card p {
+      line-height: 2;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .content-card small {
+      display: block;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #e7dfcf;
+      color: #6f756e;
+    }
+    #content-message {
+      margin-bottom: 18px;
+      color: #6f756e;
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
+    <section class="listing-hero">
       <div class="container">
-        <span class="section-label">अल्फाज़ और एहसास</span>
         <h1>शायरी की दुनिया</h1>
-        <p>हर एहसास के लिए कुछ खास शब्द।</p>
+        <p>अल्फ़ाज़ों में छिपे एहसास, दिल से निकले जज़्बात।</p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="listing-section">
       <div class="container">
         <div class="section-heading">
-          <div>
-            <span class="section-label">अपनी पसंद की श्रेणी चुनें</span>
-            <h2 class="section-title">शायरी <span>संग्रह</span></h2>
-          </div>
+          <span class="section-label">ARS साहित्य संग्रह</span>
+          <h2>प्रकाशित शायरियाँ</h2>
+          <p>यहाँ लेखकों की स्वीकृत और प्रकाशित शायरियाँ पढ़ें।</p>
         </div>
 
-        <div class="tag-list" id="shayari-categories">
-          <button class="tag category-filter active" data-category="all">सभी</button>
-          <button class="tag category-filter" data-category="प्रेम">प्रेम</button>
-          <button class="tag category-filter" data-category="दर्द">दर्द</button>
-          <button class="tag category-filter" data-category="भावनात्मक">भावनात्मक</button>
-          <button class="tag category-filter" data-category="प्रेरणादायक">प्रेरणादायक</button>
-          <button class="tag category-filter" data-category="दोस्ती">दोस्ती</button>
+        <div id="content-message" role="status" aria-live="polite"></div>
+        <div id="content-list" class="content-grid" data-category="shayari">
+          <p>शायरियाँ लोड हो रही हैं...</p>
         </div>
-
-        <div class="search-panel">
-          <label for="shayari-search">शायरी खोजें</label>
-          <input id="shayari-search" type="search"
-                 placeholder="शब्द, शीर्षक या लेखक का नाम लिखें...">
-        </div>
-
-        <div class="content-grid" id="shayari-list">
-          <article class="writing-card">
-            <span class="writing-type">प्रेम</span>
-            <h3>अनकहा एहसास</h3>
-            <p>कुछ एहसास दिल में ही रह जाते हैं,<br>
-               कुछ शब्द बनकर भी अधूरे रह जाते हैं।</p>
-            <span class="writing-author">लेखक: ARS साहित्यिक संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">दर्द</span>
-            <h3>खामोशी</h3>
-            <p>खामोशी भी कभी कहानी कहती है,<br>
-               आँखों में छुपी बात जुबानी कहती है।</p>
-            <span class="writing-author">लेखक: ARS साहित्यिक संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">प्रेरणादायक</span>
-            <h3>हौसला</h3>
-            <p>मुश्किलों से डरकर राहें छोड़ी नहीं जातीं,<br>
-               कोशिश करने वालों की उम्मीदें तोड़ी नहीं जातीं।</p>
-            <span class="writing-author">लेखक: ARS साहित्यिक संग्रह</span>
-          </article>
-        </div>
-
-        <div class="empty-state" id="shayari-empty" hidden>
-          <h3>कोई रचना नहीं मिली</h3>
-          <p>दूसरे शब्दों से खोजें या दूसरी श्रेणी चुनें।</p>
-        </div>
-
-        <div class="pagination" id="shayari-pagination"></div>
-      </div>
-    </section>
-
-    <section class="community-banner">
-      <div class="container community-content">
-        <div>
-          <h2>आप भी अपनी शायरी साझा करें</h2>
-          <p>अपनी मौलिक रचना भेजें और साहित्यिक शब्द लोक का हिस्सा बनें।</p>
-        </div>
-        <a href="register.html" class="btn btn-gold">लेखक बनें</a>
       </div>
     </section>
   </main>
 
   <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="content.js"></script>
 </body>
 </html>
