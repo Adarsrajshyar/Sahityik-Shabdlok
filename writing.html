@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="साहित्यिक शब्द लोक पर प्रकाशित रचना पढ़ें।">
+  <meta name="description" content="साहित्यिक शब्द लोक पर प्रकाशित रचनाएँ पढ़ें और अपने विचार साझा करें।">
   <title>रचना पढ़ें | साहित्यिक शब्द लोक</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
     .reading-area {
       max-width: 850px;
-      min-height: 420px;
+      min-height: 350px;
       margin: 45px auto;
       padding: 30px;
       background: #fffdf6;
@@ -21,32 +19,105 @@
       border-radius: 12px;
       box-shadow: 0 8px 25px rgba(31, 51, 38, 0.06);
     }
+
     .reading-area h1 {
       color: #174b35;
       font-size: clamp(26px, 4vw, 38px);
       margin-bottom: 12px;
     }
+
     .reading-meta {
       color: #777;
       padding-bottom: 18px;
       border-bottom: 1px solid #e7dfcf;
       margin-bottom: 25px;
     }
+
     .reading-body {
       font-size: 18px;
       line-height: 2.1;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
     }
+
     .back-link {
       display: inline-block;
       margin-top: 30px;
       color: #174b35;
       font-weight: 600;
     }
+
+    .comments-section {
+      max-width: 850px;
+      margin: 0 auto 60px;
+      padding: 25px;
+      background: #fffdf6;
+      border: 1px solid #e7dfcf;
+      border-radius: 12px;
+    }
+
+    .comments-section h2 {
+      color: #174b35;
+      margin-bottom: 20px;
+    }
+
+    .comment-form textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 13px;
+      border: 1px solid #d9d5c8;
+      border-radius: 8px;
+      font: inherit;
+      resize: vertical;
+    }
+
+    .comment-form button {
+      margin-top: 12px;
+      padding: 11px 22px;
+      color: white;
+      background: #174b35;
+      border: 0;
+      border-radius: 7px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .comment-card {
+      margin-top: 15px;
+      padding: 17px;
+      border: 1px solid #e7dfcf;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .comment-card strong {
+      color: #174b35;
+    }
+
+    .comment-card p {
+      margin-top: 8px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .comment-card small {
+      color: #777;
+    }
+
+    #comment-message,
     #writing-message {
       color: #686e67;
-      text-align: center;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 600px) {
+      .reading-area,
+      .comments-section {
+        padding: 18px;
+        margin-left: 12px;
+        margin-right: 12px;
+      }
     }
   </style>
 </head>
@@ -55,6 +126,7 @@
   <div id="site-header"></div>
 
   <main class="container">
+
     <article class="reading-area" id="writing-detail">
       <div id="writing-message" role="status" aria-live="polite">
         रचना लोड हो रही है...
@@ -66,13 +138,42 @@
         <div class="reading-body" id="writing-body"></div>
       </div>
 
-      <a href="search.html" class="back-link">← सभी रचनाएँ देखें</a>
+      <a href="search.html" class="back-link">
+        ← सभी रचनाएँ देखें
+      </a>
     </article>
+
+    <section class="comments-section" id="comments-section" hidden>
+      <h2>पाठकों की प्रतिक्रियाएँ</h2>
+
+      <form id="comment-form" class="comment-form">
+        <label for="comment-body">
+          अपनी प्रतिक्रिया लिखें
+        </label>
+
+        <textarea
+          id="comment-body"
+          maxlength="2000"
+          placeholder="इस रचना के बारे में अपने विचार साझा करें..."
+          required
+        ></textarea>
+
+        <button type="submit" id="comment-submit">
+          टिप्पणी भेजें
+        </button>
+      </form>
+
+      <div id="comment-message" role="status" aria-live="polite"></div>
+
+      <div id="comments-list"></div>
+    </section>
+
   </main>
 
   <div id="site-footer"></div>
 
   <script type="module" src="app.js"></script>
   <script type="module" src="search.js"></script>
+  <script type="module" src="comments.js"></script>
 </body>
 </html>
