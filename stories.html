@@ -1,65 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="साहित्यिक शब्द लोक पर हिंदी कहानियाँ पढ़ें।">
+  <meta name="description" content="साहित्यिक शब्द लोक पर प्रेरणादायक, सामाजिक और रोचक हिंदी कहानियाँ पढ़ें।">
   <title>कहानियाँ | साहित्यिक शब्द लोक</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .page-hero{padding:45px 20px;text-align:center;background:#edf2e7;color:#315b38}
-    .page-hero h1{font-size:34px;margin:0 0 10px}
-    .page-hero p{color:#65715e;line-height:1.8}
-    .content-area{max-width:1100px;margin:35px auto;padding:0 20px}
-    .search-panel{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-    .search-panel input{flex:1;min-width:200px;padding:12px;border:1px solid #d9d5c8;border-radius:8px;font:inherit}
-    .filter-list{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
-    .filter-list button{padding:9px 16px;border:1px solid #315b38;border-radius:20px;background:white;color:#315b38;cursor:pointer;font:inherit}
-    .filter-list button.active{background:#315b38;color:white}
-    .content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
-    .story-card{background:#fffdf6;border:1px solid #e5dfcc;border-radius:13px;padding:20px}
-    .story-card h2{color:#315b38;font-size:21px}
-    .story-card p{color:#666;line-height:1.8}
-    .empty-state{padding:25px;text-align:center;color:#777;background:#f7f5ed;border-radius:10px}
-    .pagination{text-align:center;margin:25px 0}
+    .listing-hero {
+      padding: 65px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #103725, #245b40);
+    }
+    .listing-hero h1 {
+      font-size: clamp(30px, 5vw, 44px);
+      margin-bottom: 10px;
+    }
+    .listing-hero p {
+      color: #e5ce9d;
+    }
+    .listing-section {
+      min-height: 420px;
+      padding: 55px 0 75px;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+    .content-card {
+      padding: 25px;
+      background: #fff;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+      box-shadow: 0 8px 25px rgba(31, 51, 38, 0.07);
+    }
+    .content-card h3 {
+      color: #174b35;
+      margin-bottom: 13px;
+      font-size: 21px;
+    }
+    .content-card p {
+      line-height: 2;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .content-card small {
+      display: block;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #e7dfcf;
+      color: #6f756e;
+    }
+    #content-message {
+      margin-bottom: 18px;
+      color: #6f756e;
+      text-align: center;
+    }
   </style>
 </head>
+
 <body>
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <h1>कहानियों की दुनिया</h1>
-      <p>जीवन, प्रेरणा, समाज और रहस्य से जुड़ी कहानियों का साहित्यिक संसार।</p>
+    <section class="listing-hero">
+      <div class="container">
+        <h1>कहानियों की दुनिया</h1>
+        <p>हर कहानी में एक अनुभव, एक विचार और एक सीख।</p>
+      </div>
     </section>
 
-    <section class="content-area">
-      <div class="search-panel">
-        <input type="search" id="story-search" placeholder="कहानी या लेखक का नाम खोजें..." aria-label="कहानी खोजें">
-      </div>
+    <section class="listing-section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">ARS साहित्य संग्रह</span>
+          <h2>प्रकाशित कहानियाँ</h2>
+          <p>जीवन, प्रेरणा और समाज से जुड़ी स्वीकृत कहानियाँ पढ़ें।</p>
+        </div>
 
-      <div class="filter-list" id="story-filters">
-        <button type="button" class="active" data-category="all">सभी</button>
-        <button type="button" data-category="जीवन">जीवन</button>
-        <button type="button" data-category="प्रेरणा">प्रेरणा</button>
-        <button type="button" data-category="सामाजिक">सामाजिक</button>
-        <button type="button" data-category="रहस्य">रहस्य</button>
+        <div id="content-message" role="status" aria-live="polite"></div>
+        <div id="content-list" class="content-grid" data-category="story">
+          <p>कहानियाँ लोड हो रही हैं...</p>
+        </div>
       </div>
-
-      <div id="stories-list" class="content-grid">
-        <article class="story-card">
-          <h2>कहानियाँ जल्द उपलब्ध होंगी</h2>
-          <p>नई कहानियाँ प्रकाशित होने पर यहाँ दिखाई देंगी।</p>
-        </article>
-      </div>
-
-      <div id="stories-empty" class="empty-state" hidden>
-        इस खोज में कोई कहानी नहीं मिली।
-      </div>
-
-      <div id="stories-pagination" class="pagination"></div>
     </section>
   </main>
 
