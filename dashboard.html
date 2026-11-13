@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reader Dashboard | साहित्यिक शब्द लोक</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dashboard.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">ARS</span>
+      <span class="brand-text">
+        <strong>साहित्यिक शब्द लोक</strong>
+        <small>Reader Dashboard</small>
+      </span>
+    </a>
+    <button class="btn btn-outline" id="logout-button">लॉगआउट</button>
+  </div>
+</header>
+
+<main class="section-padding">
+  <div class="container">
+
+    <section class="dashboard-welcome">
+      <span class="section-label">पाठक का संसार</span>
+      <h1>नमस्कार, <span id="reader-name">पाठक</span>!</h1>
+      <p>आपकी पसंदीदा रचनाएँ और साहित्यिक गतिविधियाँ यहाँ मिलेंगी।</p>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <article class="dashboard-card">
+        <span class="dashboard-icon">♡</span>
+        <h2>पसंदीदा रचनाएँ</h2>
+        <p>आपकी पसंद की रचनाएँ यहाँ दिखाई देंगी।</p>
+        <a href="shayari.html">शायरी पढ़ें →</a>
+      </article>
+
+      <article class="dashboard-card">
+        <span class="dashboard-icon">📖</span>
+        <h2>साहित्य संग्रह</h2>
+        <p>नई शायरी, कविताएँ और कहानियाँ पढ़ें।</p>
+        <a href="index.html#collection">संग्रह देखें →</a>
+      </article>
+
+      <article class="dashboard-card">
+        <span class="dashboard-icon">✍</span>
+        <h2>लेखक बनें</h2>
+        <p>अपनी मौलिक रचनाओं को प्रकाशित करवाने का अवसर पाएँ।</p>
+        <a href="register.html">पंजीकरण करें →</a>
+      </article>
+
+    </section>
+
+    <section class="dashboard-panel">
+      <h2>आपकी प्रोफाइल</h2>
+      <div class="profile-details">
+        <p><strong>नाम:</strong> <span id="profile-name">लोड हो रहा है...</span></p>
+        <p><strong>ईमेल:</strong> <span id="profile-email">लोड हो रहा है...</span></p>
+        <p><strong>भूमिका:</strong> <span id="profile-role">Reader</span></p>
+      </div>
+    </section>
+
+    <p id="dashboard-message" role="status"></p>
+
+  </div>
+</main>
+
+<script>
+  const dashboardStyle = document.createElement("style");
+  dashboardStyle.textContent = `
+    .dashboard-welcome {
+      background: #174b35;
+      color: white;
+      padding: 35px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+    .dashboard-welcome h1 {
+      font-family: "Noto Serif Devanagari", serif;
+      font-size: 30px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .dashboard-card, .dashboard-panel {
+      background: white;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(31,51,38,.06);
+    }
+    .dashboard-card h2, .dashboard-panel h2 {
+      color: #174b35;
+      font-family: "Noto Serif Devanagari", serif;
+      font-size: 21px;
+    }
+    .dashboard-card p { color: #6f756e; margin: 12px 0; }
+    .dashboard-card a { color: #a77b35; font-weight: 700; }
+    .dashboard-icon { font-size: 30px; color: #b18a48; }
+    .dashboard-panel { margin-top: 25px; }
+    .profile-details p { margin-top: 12px; }
+    @media(max-width:700px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+  `;
+  document.head.appendChild(dashboardStyle);
+</script>
+
+</body>
+</html>
