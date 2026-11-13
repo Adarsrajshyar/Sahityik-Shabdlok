@@ -1,104 +1,100 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#173d32">
-  <title>हिंदी कविता | साहित्यिक शब्द लोक – ARS</title>
-  <meta name="description" content="हिंदी कविताओं का साहित्यिक संग्रह पढ़ें और अपनी मौलिक कविता साझा करें।">
+  <meta name="description" content="साहित्यिक शब्द लोक पर हिंदी कविताएँ पढ़ें।">
+  <title>कविताएँ | साहित्यिक शब्द लोक</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="app.js"></script>
-  <script type="module" src="content.js"></script>
+
+  <style>
+    .listing-hero {
+      padding: 65px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #103725, #245b40);
+    }
+    .listing-hero h1 {
+      font-size: clamp(30px, 5vw, 44px);
+      margin-bottom: 10px;
+    }
+    .listing-hero p {
+      color: #e5ce9d;
+    }
+    .listing-section {
+      min-height: 420px;
+      padding: 55px 0 75px;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+    .content-card {
+      padding: 25px;
+      background: #fff;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+      box-shadow: 0 8px 25px rgba(31, 51, 38, 0.07);
+    }
+    .content-card h3 {
+      color: #174b35;
+      margin-bottom: 13px;
+      font-size: 21px;
+    }
+    .content-card p {
+      line-height: 2;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .content-card small {
+      display: block;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #e7dfcf;
+      color: #6f756e;
+    }
+    #content-message {
+      margin-bottom: 18px;
+      color: #6f756e;
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
+    <section class="listing-hero">
       <div class="container">
-        <span class="section-label">कल्पना और अभिव्यक्ति</span>
-        <h1>कविता संग्रह</h1>
-        <p>भावनाओं, विचारों और जीवन के अनुभवों की काव्यात्मक अभिव्यक्ति।</p>
+        <h1>कविताओं का संसार</h1>
+        <p>जहाँ विचार, कल्पना और भावनाएँ शब्दों में ढलती हैं।</p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="listing-section">
       <div class="container">
         <div class="section-heading">
-          <div>
-            <span class="section-label">कवियों की रचनाएँ</span>
-            <h2 class="section-title">कविता <span>पढ़ें</span></h2>
-          </div>
+          <span class="section-label">ARS साहित्य संग्रह</span>
+          <h2>प्रकाशित कविताएँ</h2>
+          <p>विभिन्न रचनाकारों की स्वीकृत कविताएँ यहाँ पढ़ें।</p>
         </div>
 
-        <div class="search-panel">
-          <label for="poetry-search">कविता खोजें</label>
-          <input type="search" id="poetry-search"
-                 placeholder="कविता का शीर्षक या कवि का नाम लिखें...">
+        <div id="content-message" role="status" aria-live="polite"></div>
+        <div id="content-list" class="content-grid" data-category="poetry">
+          <p>कविताएँ लोड हो रही हैं...</p>
         </div>
-
-        <div class="content-grid" id="poetry-list">
-          <article class="writing-card">
-            <span class="writing-type">जीवन</span>
-            <h3>जीवन की राह</h3>
-            <p>
-              राहों में चाहे कितने मोड़ आएँ,<br>
-              मन में उम्मीद के दीप जलाए जाएँ।<br>
-              हर नया दिन कुछ सिखाता है,<br>
-              जीवन आगे बढ़ना सिखाता है।
-            </p>
-            <span class="writing-author">कवि: ARS साहित्यिक संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">प्रेरणा</span>
-            <h3>नई उड़ान</h3>
-            <p>
-              सपनों को अपने पंख बनाना,<br>
-              मेहनत से हर राह सजाना।<br>
-              मंज़िल तक जो बढ़ते जाते,<br>
-              अपने सपनों को सच कर जाते।
-            </p>
-            <span class="writing-author">कवि: ARS साहित्यिक संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">प्रकृति</span>
-            <h3>धरती का संदेश</h3>
-            <p>
-              पेड़ों की छाया जीवन देती,<br>
-              नदियों की धारा संदेश सुनाती।<br>
-              प्रकृति का सम्मान जो करता,<br>
-              आने वाली पीढ़ी को बचाता।
-            </p>
-            <span class="writing-author">कवि: ARS साहित्यिक संग्रह</span>
-          </article>
-        </div>
-
-        <div class="empty-state" id="poetry-empty" hidden>
-          <h3>अभी कोई कविता नहीं मिली</h3>
-          <p>जल्द ही यहाँ नई कविताएँ जोड़ी जाएँगी।</p>
-        </div>
-
-        <div class="pagination" id="poetry-pagination"></div>
-      </div>
-    </section>
-
-    <section class="community-banner">
-      <div class="container community-content">
-        <div>
-          <h2>आपकी कविता भी यहाँ प्रकाशित हो सकती है</h2>
-          <p>अपनी मौलिक कविता भेजें। समीक्षा के बाद चयनित कविता प्रकाशित होगी।</p>
-        </div>
-        <a href="register.html" class="btn btn-gold">कविता भेजें</a>
       </div>
     </section>
   </main>
 
   <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="content.js"></script>
 </body>
 </html>
