@@ -1,7 +1,6 @@
-
 /*
-  साहित्यिक शब्द लोक - Content Management
-  Published content display and author submission.
+  साहित्यिक शब्द लोक - ARS
+  Public Published Content Display
 */
 
 import { supabase } from "./supabase-client.js";
@@ -18,12 +17,43 @@ function escapeHTML(value = "") {
   })[char]);
 }
 
-function showContentMessage(message, type = "info") {
+function showContentMessage(message) {
   const box = document.querySelector("#content-message");
-  if (!box) return;
 
-  box.textContent = message;
-  box.dataset.type = type;
+  if (box) {
+    box.textContent = message;
+  }
+}
+
+function getCategoryLabel(category = "") {
+  const labels = {
+    shayari: "शायरी",
+    poetry: "कविता",
+    story: "कहानी",
+    प्रेम: "प्रेम",
+    दर्द: "दर्द",
+    भावनात्मक: "भावनात्मक",
+    प्रेरणादायक: "प्रेरणादायक",
+    दोस्ती: "दोस्ती",
+    प्रकृति: "प्रकृति",
+    सामाजिक: "सामाजिक",
+    जीवन: "जीवन",
+    प्रेरणा: "प्रेरणा",
+    रहस्य: "रहस्य",
+    अन्य: "अन्य"
+  };
+
+  return labels[category] || category;
+}
+
+function formatCategory(category = "") {
+  const parts = category.split(":");
+
+  if (parts.length === 2) {
+    return `${getCategoryLabel(parts[0])} • ${getCategoryLabel(parts[1])}`;
+  }
+
+  return getCategoryLabel(category);
 }
 
 async function getPublishedContent(category = null) {
@@ -38,8 +68,19 @@ async function getPublishedContent(category = null) {
     .eq("status", "published")
     .order("created_at", { ascending: false });
 
+  /*
+    नई रचनाओं की category:
+    shayari:प्रेम
+    poetry:प्रकृति
+    story:जीवन
+
+    पुराने records में केवल shayari/poetry/story भी हो सकता है।
+  */
+
   if (category) {
-    query = query.eq("category", category);
+    query = query.or(
+      `category.eq.${category},category.like.${category}:%`
+    );
   }
 
   const { data, error } = await query;
@@ -57,16 +98,28 @@ function renderContent(items, container) {
   if (!container) return;
 
   if (!items.length) {
-    container.innerHTML = "<p>अभी इस श्रेणी में कोई प्रकाशित रचना उपलब्ध नहीं है।</p>";
+    container.innerHTML =
+      "<p>अभी इस श्रेणी में कोई प्रकाशित रचना उपलब्ध नहीं है।</p>";
     return;
   }
 
   container.innerHTML = items.map((item) => `
     <article class="content-card">
       <h3>${escapeHTML(item.title)}</h3>
+
       <p>${escapeHTML(item.body).replace(/\n/g, "<br>")}</p>
+
       <small>
+        श्रेणी: ${escapeHTML(formatCategory(item.category || ""))}
+        <br>
         लेखक: ${escapeHTML(item.author_name || "ARS लेखक")}
+        <br>
+        प्रकाशित तिथि:
+        ${
+          item.created_at
+            ? new Date(item.created_at).toLocaleDateString("hi-IN")
+            : "उपलब्ध नहीं"
+        }
       </small>
     </article>
   `).join("");
@@ -80,78 +133,23 @@ async function loadPublishedContent(category = null) {
   container.innerHTML = "<p>रचनाएँ लोड हो रही हैं...</p>";
 
   const items = await getPublishedContent(category);
+
   renderContent(items, container);
-}
-
-async function submitWork(event) {
-  event?.preventDefault();
-
-  if (!supabase) {
-    showContentMessage("Backend configure नहीं है।", "error");
-    return;
-  }
-
-  const { data: { user }, error: userError } =
-    await supabase.auth.getUser();
-
-  if (userError || !user) {
-    showContentMessage("रचना भेजने के लिए पहले Login करें।", "error");
-    return;
-  }
-
-  const title = document.querySelector("#work-title")?.value.trim();
-  const body = document.querySelector("#work-body")?.value.trim();
-  const category = document.querySelector("#work-category")?.value;
-
-  if (!title || !body || !category) {
-    showContentMessage("कृपया सभी आवश्यक जानकारी भरें।", "error");
-    return;
-  }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  const { error } = await supabase
-    .from(CONTENT_TABLE)
-    .insert({
-      author_id: user.id,
-      author_name: profile?.full_name || user.email,
-      title,
-      body,
-      category,
-      status: "pending"
-    });
-
-  if (error) {
-    console.error("Submission failed:", error);
-    showContentMessage(
-      "रचना जमा नहीं हो सकी। Database और permissions जाँचें।",
-      "error"
-    );
-    return;
-  }
-
-  showContentMessage("आपकी रचना समीक्षा के लिए जमा हो गई है।", "success");
-  event?.target?.reset();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.querySelector("#content-list");
 
   if (contentContainer) {
-    const category = contentContainer.dataset.category || null;
+    const category =
+      contentContainer.dataset.category || null;
+
     loadPublishedContent(category);
   }
-
-  document.querySelector("#submit-work-form")
-    ?.addEventListener("submit", submitWork);
 });
 
 export {
   getPublishedContent,
   loadPublishedContent,
-  submitWork
+  renderContent
 };
