@@ -1,168 +1,149 @@
+/* =====================================
+   SAHITYIK SHABDLOK - ARS
+   Main Website JavaScript
+===================================== */
 
-const SITE = {
-  name: "साहित्यिक शब्द लोक",
-  brand: "Adarsh Raj Shayar",
-  shortName: "ARS",
-  tagline: "शब्दों से संवेदना तक…",
-  youtube: "https://www.youtube.com/@Adarshshyari"
-};
+"use strict";
 
-const navigation = [
-  { label: "होम", href: "index.html" },
-  { label: "शायरी", href: "shayari.html" },
-  { label: "कविता", href: "poetry.html" },
-  { label: "कहानियाँ", href: "stories.html" },
-  { label: "ARS Book", href: "ars-book.html" },
-  { label: "लेखक समुदाय", href: "community.html" },
-  { label: "हमारे बारे में", href: "about.html" }
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-function getCurrentPage() {
-  const path = window.location.pathname;
-  return path.split("/").pop() || "index.html";
-}
+  // 1. MOBILE MENU
+  const menuToggle = document.getElementById("menu-toggle");
+  const mainNav = document.getElementById("main-nav");
 
-function createHeader() {
-  const header = document.getElementById("site-header");
-  if (!header) return;
+  if (menuToggle && mainNav) {
 
-  const currentPage = getCurrentPage();
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
 
-  const navLinks = navigation.map(item => {
-    const active = currentPage === item.href ? "active" : "";
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
 
-    return `
-      <a class="${active}" href="${item.href}">
-        ${item.label}
-      </a>
-    `;
-  }).join("");
-
-  header.innerHTML = `
-    <header class="site-header">
-      <div class="container header-inner">
-
-        <a href="index.html" class="brand" aria-label="${SITE.name}">
-          <span class="brand-mark">ARS</span>
-          <span class="brand-text">
-            <strong>${SITE.name}</strong>
-            <small>${SITE.brand}</small>
-          </span>
-        </a>
-
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          type="button"
-          aria-label="मेन्यू खोलें"
-          aria-expanded="false"
-          aria-controls="main-navigation">
-          ☰
-        </button>
-
-        <nav class="main-nav" id="main-navigation">
-          ${navLinks}
-        </nav>
-
-        <div class="header-actions">
-          <a href="login.html" class="header-login">लॉगिन</a>
-          <a href="register.html" class="header-register">लेखक बनें</a>
-        </div>
-
-      </div>
-    </header>
-  `;
-
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("main-navigation");
-
-  if (toggle && nav) {
-    toggle.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.setAttribute(
+      menuToggle.setAttribute(
         "aria-label",
         isOpen ? "मेन्यू बंद करें" : "मेन्यू खोलें"
       );
-
-      toggle.textContent = isOpen ? "✕" : "☰";
     });
 
-    nav.querySelectorAll("a").forEach(link => {
+    // Menu close after selecting a link
+    mainNav.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.textContent = "☰";
+        mainNav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "मेन्यू खोलें");
       });
     });
+
   }
-}
 
-function createFooter() {
-  const footer = document.getElementById("site-footer");
-  if (!footer) return;
+  // 2. CURRENT YEAR IN FOOTER
+  const yearElement = document.getElementById("current-year");
 
-  footer.innerHTML = `
-    <footer class="site-footer">
-      <div class="container">
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 
-        <div class="footer-grid">
+  // 3. SHARE FEATURED WRITING
+  const shareButtons = document.querySelectorAll("[data-share]");
 
-          <div>
-            <div class="footer-brand">${SITE.name}</div>
+  shareButtons.forEach(button => {
 
-            <p class="footer-description">
-              ${SITE.tagline}
-              हिंदी साहित्य, शायरी, कविता और कहानियों
-              को समर्पित एक साहित्यिक मंच।
-            </p>
+    button.addEventListener("click", async () => {
 
-            <p class="footer-description">
-              Founder: ${SITE.brand}
-            </p>
-          </div>
+      const shareData = {
+        title: "साहित्यिक शब्द लोक - ARS",
+        text:
+          "रास्ते कठिन हों तो क्या हुआ,\n" +
+          "कदमों में अभी उड़ान बाकी है।\n" +
+          "मंज़िल भले ही दूर हो,\n" +
+          "हौसलों में पूरा आसमान बाकी है।\n\n" +
+          "साहित्यिक शब्द लोक - ARS",
+        url: window.location.href
+      };
 
-          <div class="footer-column">
-            <h3>महत्त्वपूर्ण लिंक</h3>
-            <a href="about.html">हमारे बारे में</a>
-            <a href="community.html">लेखक समुदाय</a>
-            <a href="ars-book.html">ARS Book</a>
-            <a href="contact.html">संपर्क करें</a>
-          </div>
+      try {
 
-          <div class="footer-column">
-            <h3>अन्य जानकारी</h3>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="login.html">लेखक लॉगिन</a>
-            <a href="${SITE.youtube}" target="_blank"
-               rel="noopener noreferrer">YouTube Channel ↗</a>
-          </div>
+        if (navigator.share) {
 
-        </div>
+          await navigator.share(shareData);
 
-        <div class="footer-bottom">
-          <span>
-            © ${new Date().getFullYear()} ${SITE.name}
-            • ${SITE.shortName}
-          </span>
+        } else if (navigator.clipboard) {
 
-          <span>सभी मौलिक रचनाओं का सम्मान करें।</span>
-        </div>
+          await navigator.clipboard.writeText(
+            shareData.text + "\n" + shareData.url
+          );
 
-      </div>
-    </footer>
-  `;
-}
+          showNotice("रचना साझा करने के लिए कॉपी हो गई है।");
 
-function initializeWebsite() {
-  createHeader();
-  createFooter();
-}
+        } else {
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeWebsite);
-} else {
-  initializeWebsite();
-}
+          showNotice("इस ब्राउज़र में शेयर सुविधा उपलब्ध नहीं है।");
+
+        }
+
+      } catch (error) {
+
+        if (error.name !== "AbortError") {
+          console.error("Share error:", error);
+          showNotice("अभी साझा नहीं किया जा सका।");
+        }
+
+      }
+
+    });
+
+  });
+
+  // 4. SIMPLE NOTICE MESSAGE
+  function showNotice(message) {
+
+    let notice = document.getElementById("ars-notice");
+
+    if (!notice) {
+
+      notice = document.createElement("div");
+      notice.id = "ars-notice";
+      notice.setAttribute("role", "status");
+
+      Object.assign(notice.style, {
+        position: "fixed",
+        bottom: "22px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: "2000",
+        background: "#174b35",
+        color: "#ffffff",
+        padding: "12px 20px",
+        borderRadius: "6px",
+        boxShadow: "0 5px 20px rgba(0,0,0,0.2)",
+        fontSize: "14px",
+        maxWidth: "90%",
+        textAlign: "center"
+      });
+
+      document.body.appendChild(notice);
+
+    }
+
+    notice.textContent = message;
+    notice.style.display = "block";
+
+    window.clearTimeout(notice.hideTimer);
+
+    notice.hideTimer = window.setTimeout(() => {
+      notice.style.display = "none";
+    }, 3000);
+
+  }
+
+  // 5. CONSOLE BRAND MESSAGE
+  console.info(
+    "%c साहित्यिक शब्द लोक - ARS ",
+    "background:#174b35;color:#e5ce9d;padding:8px;font-size:15px;"
+  );
+
+  console.info("शब्दों से संवेदना तक…");
+
+});
