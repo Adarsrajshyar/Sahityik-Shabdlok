@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक के प्रकाशित लेखकों की सूची।">
+  <title>हमारे लेखक | साहित्यिक शब्द लोक</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .authors-hero {
+      padding: 55px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #103725, #245b40);
+    }
+    .authors-hero h1 {
+      font-size: clamp(30px, 5vw, 42px);
+    }
+    .authors-hero p {
+      color: #e5ce9d;
+    }
+    .authors-container {
+      max-width: 1100px;
+      margin: 40px auto 70px;
+      padding: 0 18px;
+    }
+    .authors-search {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 30px;
+      padding: 13px 16px;
+      border: 1px solid #d9d5c8;
+      border-radius: 8px;
+      font: inherit;
+    }
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .author-card {
+      padding: 24px;
+      background: #fffdf6;
+      border: 1px solid #e7dfcf;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(31, 51, 38, .06);
+    }
+    .author-card h2 {
+      color: #174b35;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .author-count {
+      color: #777;
+      margin-bottom: 14px;
+    }
+    .author-works {
+      padding-left: 20px;
+      line-height: 1.9;
+    }
+    .author-works a {
+      color: #174b35;
+      text-decoration: none;
+    }
+    .author-works a:hover {
+      text-decoration: underline;
+    }
+    #authors-message {
+      text-align: center;
+      color: #686e67;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="authors-hero">
+      <h1>हमारे रचनाकार</h1>
+      <p>हर लेखक की अपनी पहचान, हर रचना की अपनी कहानी।</p>
+    </section>
+
+    <section class="authors-container">
+      <input
+        type="search"
+        id="authors-search"
+        class="authors-search"
+        placeholder="लेखक का नाम खोजें..."
+        aria-label="लेखक का नाम खोजें"
+      >
+
+      <div id="authors-message" role="status" aria-live="polite">
+        लेखक सूची लोड हो रही है...
+      </div>
+
+      <div id="authors-list" class="authors-grid"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="authors.js"></script>
+</body>
+</html>
