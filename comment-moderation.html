@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>टिप्पणी समीक्षा | साहित्यिक शब्द लोक</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .moderation-container {
+      max-width: 950px;
+      margin: 40px auto 70px;
+      padding: 20px;
+    }
+
+    .moderation-container h1 {
+      color: #174b35;
+      margin-bottom: 20px;
+    }
+
+    .moderation-card {
+      padding: 22px;
+      margin-bottom: 18px;
+      background: #fffdf6;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+    }
+
+    .moderation-card p {
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .moderation-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .moderation-actions button {
+      padding: 10px 17px;
+      border: 0;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .approve-button {
+      background: #174b35;
+    }
+
+    .reject-button {
+      background: #8c3434;
+    }
+
+    #moderation-message {
+      margin: 20px 0;
+      color: #686e67;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="moderation-container">
+    <h1>टिप्पणी समीक्षा</h1>
+
+    <p>
+      यहाँ पाठकों की लंबित टिप्पणियों की समीक्षा करें।
+      स्वीकृत टिप्पणी ही सार्वजनिक रूप से दिखाई देगी।
+    </p>
+
+    <div id="moderation-message" role="status" aria-live="polite">
+      टिप्पणियाँ लोड हो रही हैं...
+    </div>
+
+    <div id="moderation-list"></div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+
+  <script type="module">
+    import { supabase } from "./supabase-client.js";
+
+    const list = document.querySelector("#moderation-list");
+    const message = document.querySelector("#moderation-message");
+
+    function showMessage(text) {
+      message.textContent = text;
+    }
+
+    function escapeHTML(value = "") {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    async function loadPendingComments() {
+      if (!supabase) {
+        showMessage("Supabase configure नहीं है।");
+        return;
+      }
+
+      const { data: userData, error: userError } =
+        await supabase.auth.getUser();
+
+      if (userError || !userData.user) {
+        showMessage("इस पेज के लिए लॉगिन आवश्यक है।");
+        return;
+      }
+
+      const { data: staffResult, error: staffError } =
+        await supabase.rpc("is_staff");
+
+      if (staffError || staffResult !== true) {
+        showMessage("आपको टिप्पणी समीक्षा की अनुमति नहीं है।");
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("comments")
+        .select("id, submission_id, author_name, body, created_at")
+        .eq("status", "pending")
+        .order("created_at", { ascending: true });
+
+      if (error) {
+        console.error(error);
+        showMessage("टिप्पणियाँ लोड नहीं हो सकीं।");
+        return;
+      }
+
+      const comments = data || [];
+
+      if (!comments.length) {
+        showMessage("अभी कोई लंबित टिप्पणी नहीं है।");
+        list.innerHTML = "";
+        return;
+      }
+
+      showMessage(`लंबित टिप्पणियाँ: ${comments.length}`);
+
+      list.innerHTML = comments.map((comment) => `
+        <article class="moderation-card">
+          <p><strong>लेखक:</strong> ${escapeHTML(comment.author_name)}</p>
+          <p><strong>रचना ID:</strong> ${escapeHTML(comment.submission_id)}</p>
+          <p>${escapeHTML(comment.body)}</p>
+
+          <div class="moderation-actions">
+            <button
+              class="approve-button"
+              data-id="${escapeHTML(comment.id)}"
+              data-status="approved"
+            >
+              स्वीकृत करें
+            </button>
+
+            <button
+              class="reject-button"
+              data-id="${escapeHTML(comment.id)}"
+              data-status="rejected"
+            >
+              अस्वीकार करें
+            </button>
+          </div>
+        </article>
+      `).join("");
+
+      list.querySelectorAll("button[data-id]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          await updateComment(
+            button.dataset.id,
+            button.dataset.status
+          );
+        });
+      });
+    }
+
+    async function updateComment(id, status) {
+      const { error } = await supabase
+        .from("comments")
+        .update({ status })
+        .eq("id", id);
+
+      if (error) {
+        console.error(error);
+        showMessage("टिप्पणी अपडेट नहीं हो सकी।");
+        return;
+      }
+
+      showMessage("टिप्पणी की स्थिति अपडेट हो गई।");
+      await loadPendingComments();
+    }
+
+    loadPendingComments();
+  </script>
+</body>
+</html>
