@@ -1,0 +1,178 @@
+
+.admin-wrap {
+  width: min(1150px, 94%);
+  margin: 30px auto;
+  padding: 10px 0 45px;
+}
+
+.admin-header {
+  margin-bottom: 25px;
+}
+
+.admin-header h1 {
+  color: #174b35;
+  margin-bottom: 5px;
+}
+
+.admin-header p,
+.admin-description {
+  color: #70766f;
+  line-height: 1.7;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.admin-stat,
+.admin-panel {
+  background: #fffdf6;
+  border: 1px solid #e5dfcc;
+  border-radius: 13px;
+  padding: 20px;
+}
+
+.admin-stat span {
+  color: #70766f;
+  display: block;
+}
+
+.admin-stat strong {
+  display: block;
+  color: #174b35;
+  font-size: 28px;
+  margin-top: 7px;
+}
+
+.admin-panel {
+  margin: 20px 0;
+}
+
+.admin-panel h2 {
+  color: #174b35;
+  margin-top: 0;
+}
+
+.admin-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-links a,
+.admin-panel button,
+#admin-settings-form button {
+  display: inline-block;
+  background: #174b35;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.admin-panel button {
+  margin: 7px 7px 7px 0;
+}
+
+.admin-panel button.reject {
+  background: #a33b32;
+}
+
+.admin-panel button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-message {
+  background: #f4f0e5;
+  border: 1px solid #e5dfcc;
+  border-radius: 9px;
+  padding: 13px;
+  margin: 15px 0;
+  line-height: 1.7;
+  color: #405b43;
+}
+
+.admin-message[data-type="error"] {
+  background: #fff0ed;
+  color: #a52a20;
+}
+
+.admin-message[data-type="success"] {
+  background: #eaf5eb;
+  color: #176b3a;
+}
+
+.admin-writing-card,
+.admin-member-card {
+  background: #f8f7f1;
+  border: 1px solid #e7e3d8;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 14px 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-writing-card h3 {
+  color: #174b35;
+  margin-top: 0;
+}
+
+.admin-writing-body {
+  white-space: pre-wrap;
+  line-height: 1.9;
+  color: #333;
+}
+
+.admin-field {
+  margin: 17px 0;
+}
+
+.admin-field label {
+  display: block;
+  color: #174b35;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.admin-field input,
+.admin-field textarea,
+.admin-member-card select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  border: 1px solid #d9d5c8;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+}
+
+.admin-member-card select {
+  max-width: 250px;
+  margin: 8px 8px 8px 0;
+}
+
+#admin-settings-form button {
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .admin-panel,
+  .admin-stat {
+    padding: 15px;
+  }
+
+  .admin-links {
+    flex-direction: column;
+  }
+
+  .admin-links a {
+    text-align: center;
+  }
+}
