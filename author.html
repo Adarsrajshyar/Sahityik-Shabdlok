@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="साहित्यिक शब्द लोक पर लेखक की प्रोफ़ाइल और प्रकाशित रचनाएँ।">
+  <title>लेखक प्रोफ़ाइल | साहित्यिक शब्द लोक</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .profile-hero {
+      padding: 55px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #103725, #245b40);
+    }
+
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: #f3e9d2;
+      color: #174b35;
+      font-size: 38px;
+      font-weight: 700;
+    }
+
+    .profile-hero h1 {
+      font-size: clamp(27px, 5vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .profile-hero p {
+      color: #e5ce9d;
+    }
+
+    .profile-container {
+      max-width: 1000px;
+      margin: 40px auto 70px;
+      padding: 0 18px;
+    }
+
+    .profile-stats {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .stat-card {
+      min-width: 150px;
+      padding: 18px;
+      text-align: center;
+      background: #fffdf6;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+    }
+
+    .stat-card strong {
+      display: block;
+      color: #174b35;
+      font-size: 25px;
+    }
+
+    .profile-works {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .work-card {
+      padding: 22px;
+      background: white;
+      border: 1px solid #e7dfcf;
+      border-radius: 9px;
+    }
+
+    .work-card h3 {
+      color: #174b35;
+      margin-bottom: 10px;
+    }
+
+    .work-card a {
+      color: #174b35;
+      font-weight: 600;
+    }
+
+    #profile-message {
+      text-align: center;
+      color: #686e67;
+      margin: 25px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="profile-hero">
+      <div class="profile-avatar" id="author-avatar">अ</div>
+      <h1 id="author-name">लेखक प्रोफ़ाइल</h1>
+      <p>साहित्यिक शब्द लोक के रचनाकार</p>
+    </section>
+
+    <section class="profile-container">
+      <div class="profile-stats">
+        <div class="stat-card">
+          <strong id="work-count">0</strong>
+          <span>प्रकाशित रचनाएँ</span>
+        </div>
+      </div>
+
+      <h2>लेखक की प्रकाशित रचनाएँ</h2>
+
+      <div id="profile-message" role="status" aria-live="polite">
+        प्रोफ़ाइल लोड हो रही है...
+      </div>
+
+      <div id="profile-works" class="profile-works"></div>
+
+      <p style="margin-top:30px;">
+        <a href="authors.html">← सभी लेखकों की सूची</a>
+      </p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="author-profile.js"></script>
+</body>
+</html>
