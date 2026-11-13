@@ -1,280 +1,309 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#173d32">
 
-  <title>साहित्यिक शब्द लोक | ARS – Adarsh Raj Shayar</title>
-  <meta name="description" content="साहित्यिक शब्द लोक – शायरी, कविता, कहानी और नए लेखकों का साहित्यिक मंच। शब्दों से संवेदना तक।">
-  <meta name="keywords" content="Hindi Shayari, Hindi Kavita, Hindi Stories, ARS, साहित्यिक शब्द लोक">
+  <meta name="theme-color" content="#174b35">
+  <meta name="description"
+        content="साहित्यिक शब्द लोक - हिंदी शायरी, कविता, कहानियों और नए लेखकों का साहित्यिक मंच।">
 
-  <meta property="og:title" content="साहित्यिक शब्द लोक – ARS">
-  <meta property="og:description" content="शब्दों से संवेदना तक… हिंदी साहित्य का अपना मंच।">
-  <meta property="og:type" content="website">
+  <title>साहित्यिक शब्द लोक | ARS</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Hind:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="app.js"></script>
+  <script src="app.js" defer></script>
 </head>
 
 <body>
-  <div id="site-header"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a class="brand" href="#home" aria-label="साहित्यिक शब्द लोक मुख्य पृष्ठ">
+        <span class="brand-mark">ARS</span>
+        <span class="brand-text">
+          <strong>साहित्यिक शब्द लोक</strong>
+          <small>शब्दों से संवेदना तक…</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle"
+              aria-label="मेन्यू खोलें"
+              aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="#home">मुख्य पृष्ठ</a>
+        <a href="#shayari">शायरी</a>
+        <a href="#poetry">कविताएँ</a>
+        <a href="#stories">कहानियाँ</a>
+        <a href="#authors">लेखक</a>
+        <a href="#ars-book">ARS Book</a>
+        <a href="#about">परिचय</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-outline">लॉगिन</a>
+        <a href="register.html" class="btn btn-primary">लेखक बनें</a>
+      </div>
+
+    </div>
+  </header>
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-overlay"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="hero-decoration decoration-one">✦</div>
+      <div class="hero-decoration decoration-two">❦</div>
 
       <div class="container hero-content">
-        <span class="eyebrow">ARS • हिंदी साहित्यिक मंच</span>
+
+        <span class="eyebrow">एक संसार, अनगिनत एहसास</span>
 
         <h1>
-          साहित्यिक शब्द लोक
-          <span>शब्दों से संवेदना तक…</span>
+          जहाँ शब्दों में बसती हैं
+          <span>दिल की कहानियाँ</span>
         </h1>
 
-        <p>
-          जहाँ भावनाएँ शब्द बनती हैं, कल्पनाएँ कहानी बनती हैं
-          और हर लेखक को अपनी पहचान बनाने का अवसर मिलता है।
+        <p class="hero-description">
+          शायरी, कविता और कहानियों के माध्यम से
+          अपने विचारों और भावनाओं को एक नई पहचान दें।
+          आपका स्वागत है साहित्यिक शब्द लोक में।
         </p>
 
-        <div class="hero-actions">
-          <a href="shayari.html" class="btn btn-gold">रचनाएँ पढ़ें</a>
-          <a href="register.html" class="btn btn-outline">लेखक बनें</a>
+        <div class="hero-buttons">
+          <a href="#collection" class="btn btn-gold">
+            साहित्य पढ़ें
+          </a>
+          <a href="register.html" class="btn btn-light-outline">
+            अपनी रचना भेजें
+          </a>
         </div>
 
-        <div class="hero-note">
-          <span class="gold-dot"></span>
-          पढ़िए • लिखिए • अपनी पहचान बनाइए
+        <div class="hero-signature">
+          <span>एक साहित्यिक पहल</span>
+          <strong>Adarsh Raj · ARS</strong>
         </div>
+
       </div>
-
-      <div class="hero-decoration">अ</div>
     </section>
 
-    <!-- Introduction -->
-    <section class="section intro-section">
+    <!-- INTRODUCTION -->
+    <section class="intro-section section-padding">
       <div class="container intro-grid">
+
         <div>
           <span class="section-label">हमारा साहित्यिक संसार</span>
-          <h2 class="section-title">शब्दों में बसती है <span>एक अलग दुनिया</span></h2>
-          <p class="section-description">
-            साहित्यिक शब्द लोक एक ऐसा मंच है जहाँ हिंदी साहित्य,
-            शायरी, कविता और कहानियों को एक साथ स्थान मिलता है।
-            यहाँ नए और अनुभवी लेखक अपनी मौलिक रचनाएँ साझा कर सकते हैं।
-          </p>
-          <a href="about.html" class="text-link">हमारे बारे में जानें →</a>
+          <h2>हर शब्द की अपनी एक कहानी है</h2>
         </div>
 
-        <div class="intro-card">
-          <div class="intro-symbol">ARS</div>
-          <h3>Adarsh Raj Shayar</h3>
-          <p>Founder • साहित्यिक शब्द लोक</p>
-          <div class="gold-line"></div>
-          <span>शब्दों से संवेदना तक…</span>
-        </div>
+        <p>
+          साहित्यिक शब्द लोक एक ऐसा मंच है जहाँ भावनाओं को शब्द,
+          विचारों को अभिव्यक्ति और नए लेखकों को अपनी पहचान बनाने
+          का अवसर मिलता है। यहाँ हर मौलिक रचना का सम्मान किया जाता है।
+        </p>
+
       </div>
     </section>
 
-    <!-- Categories -->
-    <section class="section categories-section">
+    <!-- COLLECTION -->
+    <section class="collection-section section-padding" id="collection">
       <div class="container">
+
         <div class="section-heading">
-          <div>
-            <span class="section-label">साहित्य की विविध विधाएँ</span>
-            <h2 class="section-title">हमारी <span>रचनाएँ</span></h2>
-          </div>
-          <a href="shayari.html" class="text-link">सभी रचनाएँ →</a>
+          <span class="section-label">हमारा संग्रह</span>
+          <h2>साहित्य की अलग-अलग विधाएँ</h2>
+          <p>अपनी पसंद की विधा चुनें और शब्दों की दुनिया में खो जाएँ।</p>
         </div>
 
         <div class="category-grid">
-          <a href="shayari.html" class="category-card">
-            <span class="category-icon">✒</span>
+
+          <a href="shayari.html" class="category-card" id="shayari">
+            <span class="category-icon">❦</span>
             <h3>शायरी</h3>
-            <p>दिल की बात, अल्फाज़ के साथ।</p>
-            <span class="category-arrow">→</span>
+            <p>प्रेम, दर्द, दोस्ती और जीवन के एहसास।</p>
+            <span class="category-link">शायरी पढ़ें →</span>
           </a>
 
-          <a href="poetry.html" class="category-card">
-            <span class="category-icon">❋</span>
-            <h3>कविता</h3>
-            <p>कल्पना और भावनाओं का संगम।</p>
-            <span class="category-arrow">→</span>
+          <a href="poetry.html" class="category-card" id="poetry">
+            <span class="category-icon">✍</span>
+            <h3>कविताएँ</h3>
+            <p>कल्पना, विचार और संवेदनाओं की अभिव्यक्ति।</p>
+            <span class="category-link">कविताएँ पढ़ें →</span>
           </a>
 
-          <a href="stories.html" class="category-card">
-            <span class="category-icon">▤</span>
+          <a href="stories.html" class="category-card" id="stories">
+            <span class="category-icon">📖</span>
             <h3>कहानियाँ</h3>
-            <p>हर कहानी में एक नया अनुभव।</p>
-            <span class="category-arrow">→</span>
+            <p>जीवन, प्रेरणा और समाज से जुड़ी कहानियाँ।</p>
+            <span class="category-link">कहानियाँ पढ़ें →</span>
           </a>
 
-          <a href="ars-book.html" class="category-card">
-            <span class="category-icon">▣</span>
-            <h3>ARS Book</h3>
-            <p>साहित्य का एक विशेष संग्रह।</p>
-            <span class="category-arrow">→</span>
+          <a href="community.html" class="category-card" id="authors">
+            <span class="category-icon">✒</span>
+            <h3>लेखक समुदाय</h3>
+            <p>नए लेखकों से मिलें और उनकी रचनाएँ जानें।</p>
+            <span class="category-link">लेखक देखें →</span>
           </a>
+
         </div>
       </div>
     </section>
 
-    <!-- Shayari categories -->
-    <section class="section shayari-section">
+    <!-- FEATURED WRITING -->
+    <section class="featured-section section-padding">
       <div class="container">
+
         <div class="section-heading">
-          <div>
-            <span class="section-label">भावनाओं के अलग-अलग रंग</span>
-            <h2 class="section-title">शायरी की <span>दुनिया</span></h2>
+          <span class="section-label">शब्दों की झलक</span>
+          <h2>एक छोटी-सी साहित्यिक शुरुआत</h2>
+        </div>
+
+        <article class="featured-card">
+          <span class="featured-tag">प्रेरणादायक विचार</span>
+
+          <blockquote>
+            “रास्ते कठिन हों तो क्या हुआ,<br>
+            कदमों में अभी उड़ान बाकी है।<br>
+            मंज़िल भले ही दूर हो,<br>
+            हौसलों में पूरा आसमान बाकी है।”
+          </blockquote>
+
+          <div class="featured-footer">
+            <span>साहित्यिक शब्द लोक · ARS</span>
+            <button class="share-button" data-share="featured">
+              साझा करें
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ARS BOOK -->
+    <section class="book-section section-padding" id="ars-book">
+      <div class="container book-grid">
+
+        <div class="book-visual">
+          <div class="book-mockup">
+            <span class="book-logo">ARS</span>
+            <span class="book-small">साहित्यिक शब्द लोक</span>
+            <h2>ARS<br>Book</h2>
+            <span class="book-line"></span>
+            <p>शब्दों का अपना संसार</p>
+            <span class="book-author">Adarsh Raj</span>
           </div>
         </div>
 
-        <div class="tag-list">
-          <a href="shayari.html?category=प्रेम" class="tag">♡ प्रेम</a>
-          <a href="shayari.html?category=दर्द" class="tag">दर्द</a>
-          <a href="shayari.html?category=भावनात्मक" class="tag">भावनात्मक</a>
-          <a href="shayari.html?category=प्रेरणादायक" class="tag">प्रेरणादायक</a>
-          <a href="shayari.html?category=दोस्ती" class="tag">दोस्ती</a>
-        </div>
+        <div class="book-content">
+          <span class="section-label">पुस्तकों का संसार</span>
+          <h2>ARS Book</h2>
 
-        <div class="featured-grid" id="featured-shayari">
-          <article class="writing-card">
-            <span class="writing-type">प्रेम शायरी</span>
-            <p>कुछ एहसास शब्दों में कहे नहीं जाते,<br>कुछ रिश्ते दूर होकर भी भुलाए नहीं जाते।</p>
-            <span class="writing-author">— ARS साहित्यिक संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">प्रेरणादायक</span>
-            <p>राहों में कठिनाई हो तो हौसला बनाए रखना,<br>मंज़िल मिले या न मिले, कदम बढ़ाते रहना।</p>
-            <span class="writing-author">— ARS साहित्यिक संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">दोस्ती</span>
-            <p>दोस्ती नाम नहीं केवल साथ निभाने का,<br>यह रिश्ता है हर हाल में मुस्कुराने का।</p>
-            <span class="writing-author">— ARS साहित्यिक संग्रह</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Latest writings -->
-    <section class="section latest-section">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <span class="section-label">पढ़िए और महसूस कीजिए</span>
-            <h2 class="section-title">नई <span>रचनाएँ</span></h2>
-          </div>
-          <a href="stories.html" class="text-link">और पढ़ें →</a>
-        </div>
-
-        <div class="featured-grid" id="latest-writings">
-          <article class="writing-card">
-            <span class="writing-type">कहानी</span>
-            <h3>एक नई शुरुआत</h3>
-            <p>हर सुबह अपने साथ एक नया अवसर लेकर आती है।</p>
-            <span class="writing-author">लेखक: ARS संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">कविता</span>
-            <h3>मेरे सपनों का संसार</h3>
-            <p>सपनों को सच करने का पहला कदम विश्वास है।</p>
-            <span class="writing-author">लेखक: ARS संग्रह</span>
-          </article>
-
-          <article class="writing-card">
-            <span class="writing-type">शायरी</span>
-            <h3>कुछ अनकहे एहसास</h3>
-            <p>कुछ बातें खामोशी में भी बहुत कुछ कह जाती हैं।</p>
-            <span class="writing-author">लेखक: ARS संग्रह</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Author community -->
-    <section class="community-banner">
-      <div class="container community-content">
-        <div>
-          <span class="section-label light-label">लेखकों का अपना मंच</span>
-          <h2>आपकी कलम, आपकी पहचान</h2>
           <p>
-            अपनी मौलिक रचनाएँ साझा करें। समीक्षा के बाद
-            चयनित रचनाएँ साहित्यिक शब्द लोक पर प्रकाशित की जाएँगी।
+            साहित्यिक शब्द लोक का पुस्तक अनुभाग, जहाँ साहित्यिक
+            पुस्तकों का परिचय, पुस्तक कवर और अधिकृत PDF उपलब्ध
+            कराई जा सकेंगी।
           </p>
+
+          <a href="ars-book.html" class="btn btn-primary">
+            पुस्तक संग्रह देखें
+          </a>
         </div>
 
-        <a href="register.html" class="btn btn-gold">लेखक के रूप में जुड़ें</a>
       </div>
     </section>
 
-    <!-- Author process -->
-    <section class="section process-section">
-      <div class="container">
-        <div class="center-heading">
-          <span class="section-label">आपकी साहित्यिक यात्रा</span>
-          <h2 class="section-title">लेखक बनने के <span>चार कदम</span></h2>
-        </div>
+    <!-- AUTHORS -->
+    <section class="author-section section-padding">
+      <div class="container author-banner">
 
-        <div class="process-grid">
-          <div class="process-card">
-            <span>01</span>
-            <h3>रजिस्ट्रेशन</h3>
-            <p>अपना लेखक अकाउंट बनाएँ।</p>
-          </div>
+        <span class="section-label">अपनी आवाज़ को पहचान दें</span>
+        <h2>आपके शब्द भी किसी के दिल तक पहुँच सकते हैं</h2>
 
-          <div class="process-card">
-            <span>02</span>
-            <h3>रचना भेजें</h3>
-            <p>अपनी मौलिक रचना जमा करें।</p>
-          </div>
+        <p>
+          अपनी मौलिक शायरी, कविता या कहानी साझा करें।
+          साहित्यिक शब्द लोक पर एक लेखक के रूप में अपनी पहचान बनाएँ।
+        </p>
 
-          <div class="process-card">
-            <span>03</span>
-            <h3>समीक्षा</h3>
-            <p>Admin या Publisher आपकी रचना जाँचेगा।</p>
-          </div>
-
-          <div class="process-card">
-            <span>04</span>
-            <h3>प्रकाशन</h3>
-            <p>स्वीकृत रचना प्रकाशित होगी और पात्रता पर प्रमाणपत्र मिलेगा।</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- YouTube -->
-    <section class="youtube-section">
-      <div class="container youtube-content">
-        <div>
-          <span class="section-label">हमसे जुड़े रहें</span>
-          <h2>ARS YouTube Channel</h2>
-          <p>शायरी और साहित्यिक रचनाओं के लिए हमारे YouTube चैनल से जुड़ें।</p>
-        </div>
-        <a href="https://www.youtube.com/@Adarshshyari"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn-dark">
-          YouTube पर जाएँ ↗
+        <a href="register.html" class="btn btn-gold">
+          लेखक के रूप में पंजीकरण करें
         </a>
+
       </div>
     </section>
+
+    <!-- ABOUT -->
+    <section class="about-section section-padding" id="about">
+      <div class="container about-content">
+
+        <span class="section-label">हमारे बारे में</span>
+        <h2>साहित्य से जुड़ने की एक पहल</h2>
+
+        <p>
+          साहित्यिक शब्द लोक का उद्देश्य हिंदी साहित्य को बढ़ावा देना,
+          नए लेखकों को मंच प्रदान करना और मौलिक रचनाओं को पाठकों तक
+          पहुँचाना है।
+        </p>
+
+        <p class="about-founder">
+          संस्थापक: <strong>Adarsh Raj</strong>
+        </p>
+
+      </div>
+    </section>
+
   </main>
 
-  <div id="site-footer"></div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
 
-  <noscript>
-    <p class="noscript-message">
-      इस वेबसाइट को सही तरीके से देखने के लिए JavaScript चालू करें।
-    </p>
-  </noscript>
+      <div class="footer-brand">
+        <span class="brand-mark">ARS</span>
+        <h3>साहित्यिक शब्द लोक</h3>
+        <p>शब्दों से संवेदना तक…</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>महत्वपूर्ण लिंक</h4>
+        <a href="#home">मुख्य पृष्ठ</a>
+        <a href="community.html">लेखक समुदाय</a>
+        <a href="ars-book.html">ARS Book</a>
+        <a href="contact.html">संपर्क करें</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>जानकारी</h4>
+        <a href="about.html">हमारे बारे में</a>
+        <a href="privacy.html">गोपनीयता नीति</a>
+        <a href="terms.html">नियम एवं शर्तें</a>
+        <a href="certificate.html">प्रमाणपत्र</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>हमसे जुड़ें</h4>
+        <a href="https://www.youtube.com/@Adarshshyari"
+           target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="contact.html">संपर्क</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © <span id="current-year"></span>
+        साहित्यिक शब्द लोक – ARS. सर्वाधिकार सुरक्षित।
+      </p>
+      <p>एक साहित्यिक पहल · Adarsh Raj</p>
+    </div>
+  </footer>
+
 </body>
 </html>
